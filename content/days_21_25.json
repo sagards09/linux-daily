@@ -1,0 +1,598 @@
+[
+ {
+  "day": 21,
+  "theme": "Text processing power tools",
+  "lessons": [
+   {
+    "cmd": "sed",
+    "man": "stream editor for filtering and transforming text",
+    "what": "Finds and replaces text, or deletes lines, without opening an editor.",
+    "when": "Changing 'colour' to 'color' in a 300-line file in one shot.",
+    "example": [
+     "$ sed 's/colour/color/g' essay.txt",
+     "$ sed -i 's/2025/2026/g' resume.txt",
+     "$ sed -n '5,10p' notes.txt"
+    ],
+    "tip": "-i edits the file itself. Try without -i first!"
+   },
+   {
+    "cmd": "awk",
+    "man": "pattern scanning and processing language",
+    "what": "Works with text column by column, with conditions and maths.",
+    "when": "Who scored above 90? What's the class total? awk does it in one line.",
+    "example": [
+     "$ awk -F, 'NR>1 && $2>90 {print $1}' marks.csv",
+     "asha",
+     "$ awk -F, 'NR>1 {s+=$2} END {print s}' marks.csv",
+     "169"
+    ],
+    "tip": "$1 = 1st column. -F, for CSV files."
+   },
+   {
+    "cmd": "xargs",
+    "man": "build and execute command lines from standard input",
+    "what": "Turns a list from one command into arguments for another.",
+    "when": "find gave you 40 .tmp files. Delete them all in one go.",
+    "example": [
+     "$ find . -name \"*.tmp\" | xargs rm",
+     "$ find . -name \"*.tmp\" -print0 | xargs -0 rm"
+    ],
+    "tip": "-print0 + -0 handles file names with spaces safely."
+   },
+   {
+    "cmd": "printf",
+    "man": "format and print data",
+    "what": "Prints text with exact formatting: padding, decimals, alignment.",
+    "when": "Making neat tables or rounded numbers in your scripts.",
+    "example": [
+     "$ printf \"%-6s %5.1f\\n\" asha 91.456",
+     "asha    91.5",
+     "$ printf \"%03d\\n\" 7",
+     "007"
+    ],
+    "tip": "Unlike echo, printf doesn't add a newline. Use \\n."
+   },
+   {
+    "cmd": "seq",
+    "man": "print a sequence of numbers",
+    "what": "Prints a list of numbers.",
+    "when": "Creating folders lab1 to lab10 without typing ten commands.",
+    "example": [
+     "$ seq 1 3",
+     "1",
+     "2",
+     "3",
+     "$ for i in $(seq 1 10); do mkdir lab$i; done"
+    ],
+    "tip": "seq 0 5 20 counts in steps of 5."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "In sed 's/a/b/g', the g means...",
+    "options": [
+     "Replace all matches",
+     "Go back",
+     "Global search only"
+    ],
+    "answer": 0,
+    "why": "Without g, only the first match per line changes."
+   },
+   {
+    "q": "In awk, $1 means...",
+    "options": [
+     "First column",
+     "One dollar",
+     "First line"
+    ],
+    "answer": 0,
+    "why": "$N = field N; $0 = whole line."
+   },
+   {
+    "q": "Why use -print0 with xargs -0?",
+    "options": [
+     "Handles spaces in names",
+     "Speed",
+     "Prints zero"
+    ],
+    "answer": 0,
+    "why": "Names are separated by a null byte, not spaces."
+   },
+   {
+    "q": "printf \"%03d\" 7 prints...",
+    "options": [
+     "3.7",
+     "007",
+     "7"
+    ],
+    "answer": 1,
+    "why": "Pad to 3 digits with zeros."
+   },
+   {
+    "q": "seq 0 5 20 prints...",
+    "options": [
+     "0 5 10 15 20",
+     "0 to 20",
+     "5 to 20"
+    ],
+    "answer": 0,
+    "why": "Start 0, step 5, end 20."
+   }
+  ]
+ },
+ {
+  "day": 22,
+  "theme": "Time and priority",
+  "lessons": [
+   {
+    "cmd": "watch",
+    "man": "execute a program periodically, showing output fullscreen",
+    "what": "Re-runs a command every few seconds and shows the live result.",
+    "when": "Watching a download folder grow, or disk space drop, live.",
+    "example": [
+     "$ watch -n 2 df -h",
+     "Every 2.0s: df -h",
+     "/dev/sda2  234G  199G  23G  90% /"
+    ],
+    "tip": "-d highlights what changed. Ctrl + C to exit."
+   },
+   {
+    "cmd": "time",
+    "man": "Report time consumed by pipeline's execution.",
+    "what": "Measures how long a command takes to run.",
+    "when": "Your code is 'slow'. How slow? Measure before you fix.",
+    "example": [
+     "$ time python3 sort_test.py",
+     "real    0m2.413s",
+     "user    0m2.280s",
+     "sys     0m0.090s"
+    ],
+    "tip": "'real' is the actual clock time you waited."
+   },
+   {
+    "cmd": "timeout",
+    "man": "run a command with a time limit",
+    "what": "Stops a command automatically if it runs too long.",
+    "when": "Testing code that might get stuck in an infinite loop.",
+    "example": [
+     "$ timeout 5s python3 maybe_infinite.py",
+     "$ echo $?",
+     "124"
+    ],
+    "tip": "Exit code 124 means 'timed out'."
+   },
+   {
+    "cmd": "nice",
+    "man": "run a program with modified scheduling priority",
+    "what": "Starts a program with lower (or higher) CPU priority.",
+    "when": "Running a heavy task but you still want your laptop to feel smooth.",
+    "example": [
+     "$ nice -n 10 ./compress_videos.sh"
+    ],
+    "tip": "-20 = highest priority, 19 = lowest. Higher = nicer."
+   },
+   {
+    "cmd": "renice",
+    "man": "alter priority of running processes",
+    "what": "Changes the priority of a program that's already running.",
+    "when": "Forgot to use nice and the task is hogging your CPU.",
+    "example": [
+     "$ renice -n 15 -p 2314",
+     "2314 (process ID) old priority 0, new priority 15"
+    ],
+    "tip": "Raising priority (negative values) needs sudo."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "watch -n 2 runs a command every...",
+    "options": [
+     "2 times",
+     "2 minutes",
+     "2 seconds"
+    ],
+    "answer": 2,
+    "why": "-n = interval in seconds."
+   },
+   {
+    "q": "In time output, real means...",
+    "options": [
+     "Clock time you waited",
+     "CPU time",
+     "Memory used"
+    ],
+    "answer": 0,
+    "why": "real = wall-clock time."
+   },
+   {
+    "q": "timeout exits with code 124 when...",
+    "options": [
+     "It succeeded",
+     "The command timed out",
+     "It was killed by you"
+    ],
+    "answer": 1,
+    "why": "124 = time limit hit."
+   },
+   {
+    "q": "Which nice value is the LOWEST priority?",
+    "options": [
+     "19",
+     "0",
+     "-20"
+    ],
+    "answer": 0,
+    "why": "19 = nicest to other programs."
+   },
+   {
+    "q": "renice works on...",
+    "options": [
+     "Files",
+     "Only new programs",
+     "Programs already running"
+    ],
+    "answer": 2,
+    "why": "It changes a running process's priority."
+   }
+  ]
+ },
+ {
+  "day": 23,
+  "theme": "System info and services",
+  "lessons": [
+   {
+    "cmd": "uname",
+    "man": "print system information",
+    "what": "Shows your kernel name, version and machine type.",
+    "when": "A tutorial says 'needs kernel 6+'. Which one do you have?",
+    "example": [
+     "$ uname -r",
+     "6.8.0-45-generic",
+     "$ uname -m",
+     "x86_64"
+    ],
+    "tip": "-a shows everything at once."
+   },
+   {
+    "cmd": "lscpu",
+    "man": "display information about the CPU architecture",
+    "what": "Shows details about your processor.",
+    "when": "How many cores do you have for that parallel programming lab?",
+    "example": [
+     "$ lscpu | grep -E \"Model name|^CPU\\(s\\)\"",
+     "CPU(s):      8",
+     "Model name:  Intel(R) Core(TM) i5"
+    ],
+    "tip": "nproc gives just the core count."
+   },
+   {
+    "cmd": "dmesg",
+    "man": "print or control the kernel ring buffer",
+    "what": "Shows messages from the Linux kernel (hardware events).",
+    "when": "You plugged in a USB and nothing happened. What did the kernel see?",
+    "example": [
+     "$ sudo dmesg | tail -n 2",
+     "usb 1-2: New USB device found",
+     "sd 2:0:0:0: [sdb] 30031872 blocks"
+    ],
+    "tip": "-w watches new messages live."
+   },
+   {
+    "cmd": "systemctl",
+    "man": "Control the systemd system and service manager",
+    "what": "Starts, stops and checks background services.",
+    "when": "Bluetooth stopped working. Restart the service instead of rebooting.",
+    "example": [
+     "$ systemctl status bluetooth",
+     "Active: active (running)",
+     "$ sudo systemctl restart bluetooth"
+    ],
+    "tip": "enable = start automatically at boot."
+   },
+   {
+    "cmd": "journalctl",
+    "man": "Print log entries from the systemd journal",
+    "what": "Reads system logs for services.",
+    "when": "A service keeps failing. The logs tell you why.",
+    "example": [
+     "$ journalctl -u bluetooth -n 5",
+     "$ journalctl -f",
+     "$ journalctl --since \"1 hour ago\""
+    ],
+    "tip": "-u picks a service, -f follows live."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "uname -r shows...",
+    "options": [
+     "RAM",
+     "Kernel version",
+     "Running users"
+    ],
+    "answer": 1,
+    "why": "-r = kernel release."
+   },
+   {
+    "q": "Which command shows CPU details?",
+    "options": [
+     "lsblk",
+     "lscpu",
+     "free"
+    ],
+    "answer": 1,
+    "why": "ls + cpu."
+   },
+   {
+    "q": "dmesg shows messages from...",
+    "options": [
+     "Your friends",
+     "Your browser",
+     "The kernel"
+    ],
+    "answer": 2,
+    "why": "The kernel ring buffer."
+   },
+   {
+    "q": "systemctl enable does what?",
+    "options": [
+     "Deletes service",
+     "Starts now only",
+     "Starts at boot"
+    ],
+    "answer": 2,
+    "why": "enable = auto-start at boot."
+   },
+   {
+    "q": "journalctl -u ssh shows...",
+    "options": [
+     "Logs for the ssh service",
+     "SSH keys",
+     "SSH users"
+    ],
+    "answer": 0,
+    "why": "-u = unit (service)."
+   }
+  ]
+ },
+ {
+  "day": 24,
+  "theme": "Scheduling and system settings",
+  "lessons": [
+   {
+    "cmd": "crontab",
+    "man": "maintain crontab files for individual users",
+    "what": "Schedules commands to run automatically at set times.",
+    "when": "Auto-backup your notes every night at 11 PM. Set it once, forget it.",
+    "example": [
+     "$ crontab -e",
+     "# min hour day month weekday command",
+     "0 23 * * * tar -czf ~/bk.tar.gz ~/notes",
+     "$ crontab -l"
+    ],
+    "tip": "*/10 * * * * = every 10 minutes."
+   },
+   {
+    "cmd": "at",
+    "man": "queue, examine, or delete jobs for later execution",
+    "what": "Runs a command once, at a specific future time.",
+    "when": "'Remind me in 30 minutes' style one-time tasks.",
+    "example": [
+     "$ echo \"notify-send 'Break!'\" | at now + 30 minutes",
+     "job 4 at Tue Nov 10 10:15:00 2026",
+     "$ atq"
+    ],
+    "tip": "cron = repeat. at = one time only."
+   },
+   {
+    "cmd": "timedatectl",
+    "man": "Control the system time and date",
+    "what": "Shows and sets the system clock and time zone.",
+    "when": "Your clock shows the wrong time after travelling.",
+    "example": [
+     "$ timedatectl",
+     "Time zone: Asia/Kolkata (IST, +0530)",
+     "$ sudo timedatectl set-timezone Asia/Kolkata"
+    ],
+    "tip": "list-timezones shows every zone."
+   },
+   {
+    "cmd": "hostnamectl",
+    "man": "Control the system hostname",
+    "what": "Shows or changes your computer's name and OS details.",
+    "when": "Renaming 'localhost' to something cooler.",
+    "example": [
+     "$ hostnamectl",
+     "Static hostname: my-laptop",
+     "Operating System: Ubuntu 24.04 LTS",
+     "$ sudo hostnamectl set-hostname dev-box"
+    ],
+    "tip": "Also a quick way to see your OS version."
+   },
+   {
+    "cmd": "logger",
+    "man": "enter messages into the system log",
+    "what": "Writes your own message into the system log.",
+    "when": "Your backup script can log 'backup done' for later checking.",
+    "example": [
+     "$ logger \"Backup finished\"",
+     "$ journalctl -n 1",
+     "Nov 10 10:20 my-laptop user: Backup finished"
+    ],
+    "tip": "Great for leaving notes from your scripts."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "0 23 * * * in cron means...",
+    "options": [
+     "Every 23 minutes",
+     "On the 23rd",
+     "Every day at 11 PM"
+    ],
+    "answer": 2,
+    "why": "Minute 0, hour 23, every day."
+   },
+   {
+    "q": "Difference between at and cron?",
+    "options": [
+     "at runs once, cron repeats",
+     "No difference",
+     "cron runs once"
+    ],
+    "answer": 0,
+    "why": "at = one-shot jobs."
+   },
+   {
+    "q": "Which command sets the time zone?",
+    "options": [
+     "timedatectl",
+     "tz",
+     "date -z"
+    ],
+    "answer": 0,
+    "why": "timedatectl set-timezone."
+   },
+   {
+    "q": "hostnamectl can also show...",
+    "options": [
+     "Your files",
+     "Your password",
+     "Your OS version"
+    ],
+    "answer": 2,
+    "why": "It lists the Operating System line."
+   },
+   {
+    "q": "logger writes messages to...",
+    "options": [
+     "The system log",
+     "A text file on Desktop",
+     "The screen only"
+    ],
+    "answer": 0,
+    "why": "It sends them to syslog/journal."
+   }
+  ]
+ },
+ {
+  "day": 25,
+  "theme": "Managing users",
+  "lessons": [
+   {
+    "cmd": "useradd",
+    "man": "create a new user or update default new user information",
+    "what": "Creates a new user account.",
+    "when": "Your sibling wants their own login on the family PC.",
+    "example": [
+     "$ sudo useradd -m -s /bin/bash guest",
+     "$ sudo passwd guest",
+     "$ ls /home",
+     "guest  user"
+    ],
+    "tip": "-m creates their home folder, -s sets their shell."
+   },
+   {
+    "cmd": "usermod",
+    "man": "modify a user account",
+    "what": "Changes an existing user: groups, shell, name and more.",
+    "when": "Giving a user access to the 'docker' group.",
+    "example": [
+     "$ sudo usermod -aG docker guest",
+     "$ groups guest",
+     "guest : guest docker"
+    ],
+    "tip": "ALWAYS use -aG. -G alone replaces all groups!"
+   },
+   {
+    "cmd": "userdel",
+    "man": "delete a user account and related files",
+    "what": "Deletes a user account.",
+    "when": "The guest account isn't needed anymore.",
+    "example": [
+     "$ sudo userdel -r guest",
+     "$ ls /home",
+     "user"
+    ],
+    "tip": "-r also deletes their home folder. Be sure!"
+   },
+   {
+    "cmd": "groupadd",
+    "man": "create a new group",
+    "what": "Creates a new user group.",
+    "when": "Making a 'project' group so teammates share one folder.",
+    "example": [
+     "$ sudo groupadd project",
+     "$ sudo usermod -aG project user",
+     "$ getent group project",
+     "project:x:1002:user"
+    ],
+    "tip": "Groups + chgrp + chmod = shared folders."
+   },
+   {
+    "cmd": "chage",
+    "man": "change user password expiry information",
+    "what": "Sets when a user's password expires.",
+    "when": "Forcing a new user to change their password on first login.",
+    "example": [
+     "$ sudo chage -l guest",
+     "Password expires   : never",
+     "$ sudo chage -d 0 guest"
+    ],
+    "tip": "-d 0 = must change password at next login."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "useradd -m does what?",
+    "options": [
+     "Creates home folder",
+     "Makes admin",
+     "Mutes user"
+    ],
+    "answer": 0,
+    "why": "-m = make home directory."
+   },
+   {
+    "q": "Why use -aG with usermod?",
+    "options": [
+     "Faster",
+     "Adds group without removing others",
+     "Required by law"
+    ],
+    "answer": 1,
+    "why": "-a = append."
+   },
+   {
+    "q": "userdel -r also removes...",
+    "options": [
+     "The home folder",
+     "All users",
+     "Root"
+    ],
+    "answer": 0,
+    "why": "-r removes home and mail spool."
+   },
+   {
+    "q": "Which command creates a group?",
+    "options": [
+     "mkgroup",
+     "addgrp",
+     "groupadd"
+    ],
+    "answer": 2,
+    "why": "groupadd NAME."
+   },
+   {
+    "q": "chage -d 0 user forces...",
+    "options": [
+     "Password change at next login",
+     "Lockout",
+     "Account deletion"
+    ],
+    "answer": 0,
+    "why": "Sets last change to day 0."
+   }
+  ]
+ }
+]

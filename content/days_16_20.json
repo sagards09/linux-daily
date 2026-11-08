@@ -1,0 +1,597 @@
+[
+ {
+  "day": 16,
+  "theme": "Customise your shell",
+  "lessons": [
+   {
+    "cmd": "alias",
+    "man": "Define or display aliases.",
+    "what": "Creates a nickname for a long command.",
+    "when": "You type 'ls -lah' 50 times a day. Make it two letters.",
+    "example": [
+     "$ alias ll='ls -lah'",
+     "$ ll",
+     "total 24K",
+     "drwxr-xr-x 5 user user 4.0K ."
+    ],
+    "tip": "Put aliases in ~/.bashrc to keep them forever."
+   },
+   {
+    "cmd": "unalias",
+    "man": "Remove each NAME from the list of defined aliases.",
+    "what": "Deletes an alias you created.",
+    "when": "That 'funny' alias you made is now confusing you.",
+    "example": [
+     "$ alias rm='echo nope'",
+     "$ rm file.txt",
+     "nope",
+     "$ unalias rm"
+    ],
+    "tip": "-a removes ALL aliases in the current shell."
+   },
+   {
+    "cmd": "export",
+    "man": "Set export attribute for shell variables.",
+    "what": "Makes a variable available to programs you run from the shell.",
+    "when": "A program needs an API key or setting passed in as a variable.",
+    "example": [
+     "$ export EDITOR=nano",
+     "$ export PATH=\"$PATH:$HOME/bin\"",
+     "$ echo $EDITOR",
+     "nano"
+    ],
+    "tip": "Adding to PATH lets you run your own scripts from anywhere."
+   },
+   {
+    "cmd": "env",
+    "man": "run a program in a modified environment",
+    "what": "Lists all environment variables, or runs a program with changed ones.",
+    "when": "Debugging: 'Which settings does my program actually see?'",
+    "example": [
+     "$ env | grep HOME",
+     "HOME=/home/user",
+     "$ env LANG=C date",
+     "Tue Nov 10 09:30:00 IST 2026"
+    ],
+    "tip": "VAR=value cmd changes it for that one command only."
+   },
+   {
+    "cmd": "source",
+    "man": "Execute commands from a file in the current shell.",
+    "what": "Runs a file's commands in your current shell, applying changes instantly.",
+    "when": "You edited ~/.bashrc. Apply it without closing the terminal.",
+    "example": [
+     "$ echo \"alias c='clear'\" >> ~/.bashrc",
+     "$ source ~/.bashrc",
+     "$ c"
+    ],
+    "tip": "A single dot works too: . ~/.bashrc"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Where do you save aliases permanently?",
+    "options": [
+     "/tmp",
+     "~/Desktop",
+     "~/.bashrc"
+    ],
+    "answer": 2,
+    "why": "bash reads ~/.bashrc on every new terminal."
+   },
+   {
+    "q": "unalias -a does what?",
+    "options": [
+     "Removes all aliases",
+     "Adds an alias",
+     "Lists aliases"
+    ],
+    "answer": 0,
+    "why": "-a = all."
+   },
+   {
+    "q": "Why add a folder to PATH?",
+    "options": [
+     "To run its programs from anywhere",
+     "To hide it",
+     "To delete it"
+    ],
+    "answer": 0,
+    "why": "The shell searches PATH for commands."
+   },
+   {
+    "q": "env LANG=C date changes LANG for...",
+    "options": [
+     "Forever",
+     "The whole system",
+     "Only that command"
+    ],
+    "answer": 2,
+    "why": "env sets it just for the program it runs."
+   },
+   {
+    "q": "Shortcut for source ~/.bashrc?",
+    "options": [
+     "! ~/.bashrc",
+     ". ~/.bashrc",
+     "~ .bashrc"
+    ],
+    "answer": 1,
+    "why": "The dot command = source."
+   }
+  ]
+ },
+ {
+  "day": 17,
+  "theme": "Links and file pieces",
+  "lessons": [
+   {
+    "cmd": "ln",
+    "man": "make links between files",
+    "what": "Creates a shortcut (link) to a file or folder.",
+    "when": "Reach a deeply buried folder from your home directory in one step.",
+    "example": [
+     "$ ln -s ~/college/sem3/dbms/labs ~/labs",
+     "$ ls -l ~/labs",
+     "labs -> /home/user/college/sem3/dbms/labs"
+    ],
+    "tip": "-s makes a symbolic (soft) link, like a desktop shortcut."
+   },
+   {
+    "cmd": "readlink",
+    "man": "print resolved symbolic links or canonical file names",
+    "what": "Shows where a link actually points.",
+    "when": "That shortcut leads... where exactly?",
+    "example": [
+     "$ readlink ~/labs",
+     "/home/user/college/sem3/dbms/labs",
+     "$ readlink -f $(which python3)",
+     "/usr/bin/python3.12"
+    ],
+    "tip": "-f follows links all the way to the final file."
+   },
+   {
+    "cmd": "dirname",
+    "man": "strip last component from file name",
+    "what": "Gives you the folder part of a path (opposite of basename).",
+    "when": "In scripts: 'Which folder is this file in?'",
+    "example": [
+     "$ dirname /home/user/music/song.mp3",
+     "/home/user/music"
+    ],
+    "tip": "basename = file part, dirname = folder part."
+   },
+   {
+    "cmd": "split",
+    "man": "split a file into pieces",
+    "what": "Cuts a big file into smaller pieces.",
+    "when": "Email allows only 25 MB but your file is 70 MB.",
+    "example": [
+     "$ split -b 25M video.mp4 part_",
+     "$ ls",
+     "part_aa  part_ab  part_ac  video.mp4",
+     "$ cat part_* > video_back.mp4"
+    ],
+    "tip": "cat glues the pieces back together."
+   },
+   {
+    "cmd": "truncate",
+    "man": "shrink or extend the size of a file to the specified size",
+    "what": "Sets a file to an exact size: empty it, or grow it.",
+    "when": "A log file grew to 2 GB. Empty it without deleting it.",
+    "example": [
+     "$ ls -lh app.log",
+     "-rw-r--r-- 1 user user 2.0G app.log",
+     "$ truncate -s 0 app.log",
+     "-rw-r--r-- 1 user user 0 app.log"
+    ],
+    "tip": "-s 0 empties a file but keeps it in place."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "ln -s creates a...",
+    "options": [
+     "Symbolic link",
+     "Zip file",
+     "Copy"
+    ],
+    "answer": 0,
+    "why": "-s = soft/symbolic link."
+   },
+   {
+    "q": "readlink -f does what?",
+    "options": [
+     "Forces delete",
+     "Follows links to the final file",
+     "Formats a link"
+    ],
+    "answer": 1,
+    "why": "-f resolves every link in the chain."
+   },
+   {
+    "q": "dirname /a/b/c.txt prints...",
+    "options": [
+     "/a/b",
+     "/a",
+     "c.txt"
+    ],
+    "answer": 0,
+    "why": "It removes the last part."
+   },
+   {
+    "q": "How do you rejoin split pieces?",
+    "options": [
+     "merge part_*",
+     "join part_*",
+     "cat part_* > file"
+    ],
+    "answer": 2,
+    "why": "cat concatenates them in order."
+   },
+   {
+    "q": "truncate -s 0 file does what?",
+    "options": [
+     "Empties it",
+     "Hides it",
+     "Deletes it"
+    ],
+    "answer": 0,
+    "why": "Size becomes 0 bytes; file stays."
+   }
+  ]
+ },
+ {
+  "day": 18,
+  "theme": "Checksums and file detective work",
+  "lessons": [
+   {
+    "cmd": "md5sum",
+    "man": "compute and check MD5 message digest",
+    "what": "Creates a short 'fingerprint' of a file.",
+    "when": "Did your file get corrupted while copying? Compare fingerprints.",
+    "example": [
+     "$ md5sum notes.zip",
+     "9e107d9d372bb6826bd81d3542a419d6  notes.zip"
+    ],
+    "tip": "Change 1 byte and the fingerprint changes completely."
+   },
+   {
+    "cmd": "sha256sum",
+    "man": "compute and check SHA256 message digest",
+    "what": "A stronger fingerprint, used to verify downloads.",
+    "when": "Downloading an Ubuntu ISO: is it the real one, untouched?",
+    "example": [
+     "$ sha256sum ubuntu.iso",
+     "a1b2c3...e9f0  ubuntu.iso",
+     "$ sha256sum -c SHA256SUMS",
+     "ubuntu.iso: OK"
+    ],
+    "tip": "-c checks files against a list of known sums."
+   },
+   {
+    "cmd": "base64",
+    "man": "base64 encode/decode data and print to standard output",
+    "what": "Converts data into plain safe text, and back.",
+    "when": "Sending binary data through something that only accepts text.",
+    "example": [
+     "$ echo \"hello\" | base64",
+     "aGVsbG8K",
+     "$ echo \"aGVsbG8K\" | base64 -d",
+     "hello"
+    ],
+    "tip": "It's encoding, NOT encryption. Anyone can decode it."
+   },
+   {
+    "cmd": "od",
+    "man": "dump files in octal and other formats",
+    "what": "Shows the raw bytes inside a file.",
+    "when": "Finding invisible characters (like tabs vs spaces) that break things.",
+    "example": [
+     "$ echo \"hi\" | od -c",
+     "0000000   h   i  \\n",
+     "0000003"
+    ],
+    "tip": "-c shows characters; \\n is the newline."
+   },
+   {
+    "cmd": "strings",
+    "man": "print the sequences of printable characters in files",
+    "what": "Pulls readable text out of binary files.",
+    "when": "Curious what messages are hidden inside a program file?",
+    "example": [
+     "$ strings /usr/bin/ls | grep -i usage",
+     "Usage: %s [OPTION]... [FILE]..."
+    ],
+    "tip": "A favourite tool in CTF / cybersecurity challenges."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "md5sum gives a file's...",
+    "options": [
+     "Fingerprint (hash)",
+     "Size",
+     "Owner"
+    ],
+    "answer": 0,
+    "why": "A hash identifies the exact content."
+   },
+   {
+    "q": "sha256sum -c is used to...",
+    "options": [
+     "Check files against known sums",
+     "Copy",
+     "Compress"
+    ],
+    "answer": 0,
+    "why": "-c = check."
+   },
+   {
+    "q": "Is base64 encryption?",
+    "options": [
+     "Yes",
+     "Only with -e",
+     "No, just encoding"
+    ],
+    "answer": 2,
+    "why": "Anyone can decode base64."
+   },
+   {
+    "q": "od -c shows a newline as...",
+    "options": [
+     "Nothing",
+     "\\n",
+     "NL"
+    ],
+    "answer": 1,
+    "why": "od -c prints escapes like \\n and \\t."
+   },
+   {
+    "q": "strings is useful for...",
+    "options": [
+     "Reading text inside binaries",
+     "Joining strings",
+     "Spell check"
+    ],
+    "answer": 0,
+    "why": "It extracts printable text."
+   }
+  ]
+ },
+ {
+  "day": 19,
+  "theme": "Networking basics",
+  "lessons": [
+   {
+    "cmd": "ping",
+    "man": "send ICMP ECHO_REQUEST to network hosts",
+    "what": "Checks if another computer or website is reachable.",
+    "when": "Wi-Fi is 'connected' but nothing loads. Is the internet alive?",
+    "example": [
+     "$ ping -c 3 google.com",
+     "64 bytes from ...: time=18.2 ms",
+     "3 packets transmitted, 3 received, 0% loss"
+    ],
+    "tip": "-c sets how many pings. Without it, Ctrl + C stops."
+   },
+   {
+    "cmd": "ip",
+    "man": "show / manipulate routing, network devices, interfaces and tunnels",
+    "what": "Shows your network interfaces and IP addresses.",
+    "when": "Your friend asks 'what's your IP?' to share files on the same Wi-Fi.",
+    "example": [
+     "$ ip -br a",
+     "lo      UNKNOWN  127.0.0.1/8",
+     "wlan0   UP       192.168.1.42/24"
+    ],
+    "tip": "-br = brief output. ip r shows your router (gateway)."
+   },
+   {
+    "cmd": "ss",
+    "man": "another utility to investigate sockets",
+    "what": "Shows network connections and which ports are open.",
+    "when": "'Port 3000 already in use.' By whom?",
+    "example": [
+     "$ ss -tulpn | grep 3000",
+     "tcp LISTEN 0 511 *:3000 users:((\"node\",pid=4120))"
+    ],
+    "tip": "-t TCP, -u UDP, -l listening, -p process, -n numbers."
+   },
+   {
+    "cmd": "dig",
+    "man": "DNS lookup utility",
+    "what": "Looks up the IP address behind a website name.",
+    "when": "A site won't open. Is the name even resolving?",
+    "example": [
+     "$ dig +short example.com",
+     "93.184.215.14"
+    ],
+    "tip": "+short gives just the answer. (Package: dnsutils)"
+   },
+   {
+    "cmd": "curl",
+    "man": "transfer a URL",
+    "what": "Talks to websites and APIs from the terminal.",
+    "when": "Testing an API for your college project without a browser.",
+    "example": [
+     "$ curl -I https://example.com",
+     "HTTP/2 200",
+     "$ curl -s https://api.github.com/zen",
+     "Keep it logically awesome."
+    ],
+    "tip": "-I headers only, -O save file, -L follow redirects."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "ping -c 3 does what?",
+    "options": [
+     "Waits 3 seconds",
+     "Pings 3 sites",
+     "Sends 3 pings then stops"
+    ],
+    "answer": 2,
+    "why": "-c = count."
+   },
+   {
+    "q": "Which command shows your IP address?",
+    "options": [
+     "ping",
+     "ip a",
+     "dig"
+    ],
+    "answer": 1,
+    "why": "ip a (address) lists IPs."
+   },
+   {
+    "q": "ss -l shows only...",
+    "options": [
+     "Logs",
+     "Listening ports",
+     "Local users"
+    ],
+    "answer": 1,
+    "why": "-l = listening sockets."
+   },
+   {
+    "q": "dig is used for...",
+    "options": [
+     "DNS lookups",
+     "Digging files",
+     "Disk checks"
+    ],
+    "answer": 0,
+    "why": "Name to IP lookups."
+   },
+   {
+    "q": "curl -I fetches...",
+    "options": [
+     "Only headers",
+     "The full page",
+     "Images"
+    ],
+    "answer": 0,
+    "why": "-I = HEAD request."
+   }
+  ]
+ },
+ {
+  "day": 20,
+  "theme": "Remote access and transfers",
+  "lessons": [
+   {
+    "cmd": "wget",
+    "man": "The non-interactive network downloader.",
+    "what": "Downloads files from the internet.",
+    "when": "Downloading a big dataset straight into your project folder.",
+    "example": [
+     "$ wget https://example.com/data.zip",
+     "$ wget -c https://example.com/big.iso"
+    ],
+    "tip": "-c continues a broken download. Lifesaver on bad Wi-Fi."
+   },
+   {
+    "cmd": "ssh",
+    "man": "OpenSSH remote login client",
+    "what": "Logs into another computer securely over the network.",
+    "when": "Working on your college lab server from your hostel room.",
+    "example": [
+     "$ ssh student@lab.college.edu",
+     "student@lab:~$ hostname",
+     "lab-server-1",
+     "student@lab:~$ exit"
+    ],
+    "tip": "exit (or Ctrl + D) brings you back home."
+   },
+   {
+    "cmd": "scp",
+    "man": "OpenSSH secure file copy",
+    "what": "Copies files between computers over SSH.",
+    "when": "Sending your assignment to the lab server, or fetching results back.",
+    "example": [
+     "$ scp report.pdf student@lab:~/submit/",
+     "$ scp student@lab:~/results.csv ."
+    ],
+    "tip": "The . at the end means 'here'."
+   },
+   {
+    "cmd": "rsync",
+    "man": "a fast, versatile, remote (and local) file-copying tool",
+    "what": "Smart copy that only transfers what changed.",
+    "when": "Backing up your whole project folder every day, quickly.",
+    "example": [
+     "$ rsync -avh projects/ /mnt/usb/backup/",
+     "sending incremental file list",
+     "app.py",
+     "sent 2.1K bytes"
+    ],
+    "tip": "Second run? Only changed files are copied."
+   },
+   {
+    "cmd": "ssh-keygen",
+    "man": "OpenSSH authentication key utility",
+    "what": "Creates a key pair so you can log in without typing passwords.",
+    "when": "Tired of typing your password for every ssh and git push.",
+    "example": [
+     "$ ssh-keygen -t ed25519",
+     "Your public key: ~/.ssh/id_ed25519.pub",
+     "$ ssh-copy-id student@lab"
+    ],
+    "tip": "Share the .pub key. NEVER share the private one."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "wget -c is used to...",
+    "options": [
+     "Copy a site",
+     "Continue a broken download",
+     "Check a file"
+    ],
+    "answer": 1,
+    "why": "-c = continue."
+   },
+   {
+    "q": "How do you leave an ssh session?",
+    "options": [
+     "logout -f",
+     "quit",
+     "exit"
+    ],
+    "answer": 2,
+    "why": "exit or Ctrl + D."
+   },
+   {
+    "q": "In scp file user@host:~/ the file goes...",
+    "options": [
+     "Nowhere",
+     "To your Desktop",
+     "To the remote home"
+    ],
+    "answer": 2,
+    "why": "host:~/ = remote home folder."
+   },
+   {
+    "q": "rsync is faster on repeat runs because...",
+    "options": [
+     "It skips unchanged files",
+     "It deletes old files",
+     "It compresses everything"
+    ],
+    "answer": 0,
+    "why": "It only sends the differences."
+   },
+   {
+    "q": "Which key is safe to share?",
+    "options": [
+     "Both",
+     "id_ed25519",
+     "id_ed25519.pub"
+    ],
+    "answer": 2,
+    "why": ".pub = public key."
+   }
+  ]
+ }
+]

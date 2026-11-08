@@ -1,0 +1,616 @@
+[
+ {
+  "day": 1,
+  "theme": "First steps in the terminal",
+  "lessons": [
+   {
+    "cmd": "pwd",
+    "man": "print name of current/working directory",
+    "what": "Shows the full path of the folder you're standing in right now.",
+    "when": "You've done 10 cd's and have no idea where you are. pwd is your 'You are here' sign.",
+    "example": [
+     "$ pwd",
+     "/home/user/college/notes"
+    ],
+    "tip": "pwd = Print Working Directory."
+   },
+   {
+    "cmd": "ls",
+    "man": "list directory contents",
+    "what": "Lists the files and folders inside a directory.",
+    "when": "You open a folder and want to see what's inside, like opening a drawer.",
+    "example": [
+     "$ ls",
+     "assignments  notes  photo.jpg",
+     "$ ls -a",
+     ".  ..  .bashrc  assignments  notes  photo.jpg"
+    ],
+    "tip": "-a shows hidden files (names starting with a dot)."
+   },
+   {
+    "cmd": "cd",
+    "man": "Change the shell working directory.",
+    "what": "Moves you into another folder.",
+    "when": "Jumping into your project folder to start work, or going back home after.",
+    "example": [
+     "$ cd notes",
+     "$ cd ..",
+     "$ cd ~",
+     "$ cd -"
+    ],
+    "tip": ".. = one folder up, ~ = home, - = previous folder."
+   },
+   {
+    "cmd": "clear",
+    "man": "clear the terminal screen",
+    "what": "Wipes the terminal screen clean. Your files are safe; only the view resets.",
+    "when": "Your screen is full of old output and your brain needs a fresh page.",
+    "example": [
+     "$ clear",
+     "",
+     "(screen is now empty)"
+    ],
+    "tip": "Shortcut: Ctrl + L does the same thing."
+   },
+   {
+    "cmd": "man",
+    "man": "an interface to the system reference manuals",
+    "what": "Opens the official manual for any command.",
+    "when": "You forgot what a flag does. Before you google it, ask the manual.",
+    "example": [
+     "$ man ls",
+     "$ man -k copy",
+     "cp (1)  - copy files and directories"
+    ],
+    "tip": "Inside man: / to search, q to quit."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Which command tells you which folder you are in?",
+    "options": [
+     "pwd",
+     "cd",
+     "ls"
+    ],
+    "answer": 0,
+    "why": "pwd prints your current working directory."
+   },
+   {
+    "q": "How do you see hidden files with ls?",
+    "options": [
+     "ls -a",
+     "ls -h",
+     "ls -x"
+    ],
+    "answer": 0,
+    "why": "-a (all) includes names starting with a dot."
+   },
+   {
+    "q": "What does cd .. do?",
+    "options": [
+     "Goes one folder up",
+     "Deletes a folder",
+     "Goes home"
+    ],
+    "answer": 0,
+    "why": ".. always means the parent folder."
+   },
+   {
+    "q": "Keyboard shortcut that works like clear?",
+    "options": [
+     "Ctrl + Z",
+     "Ctrl + C",
+     "Ctrl + L"
+    ],
+    "answer": 2,
+    "why": "Ctrl + L clears the screen."
+   },
+   {
+    "q": "How do you quit a man page?",
+    "options": [
+     "Type exit",
+     "Press x",
+     "Press q"
+    ],
+    "answer": 2,
+    "why": "man uses a pager; q quits it."
+   }
+  ]
+ },
+ {
+  "day": 2,
+  "theme": "Creating and moving files",
+  "lessons": [
+   {
+    "cmd": "touch",
+    "man": "change file timestamps",
+    "what": "Creates an empty file, or updates the time of an existing one.",
+    "when": "You need a blank file to start writing notes or code.",
+    "example": [
+     "$ touch todo.txt",
+     "$ touch a.txt b.txt c.txt",
+     "$ ls",
+     "a.txt  b.txt  c.txt  todo.txt"
+    ],
+    "tip": "If the file exists, touch won't erase it. Relax."
+   },
+   {
+    "cmd": "mkdir",
+    "man": "make directories",
+    "what": "Creates new folders.",
+    "when": "New semester, new folder. Or folders inside folders inside folders.",
+    "example": [
+     "$ mkdir projects",
+     "$ mkdir -p sem1/maths/notes",
+     "$ ls sem1/maths",
+     "notes"
+    ],
+    "tip": "-p creates the whole path in one go."
+   },
+   {
+    "cmd": "cp",
+    "man": "copy files and directories",
+    "what": "Makes a copy of a file or folder.",
+    "when": "Before editing something important, keep a backup copy. Future you says thanks.",
+    "example": [
+     "$ cp report.txt report_backup.txt",
+     "$ cp -r projects projects_copy"
+    ],
+    "tip": "-r is needed to copy a whole folder."
+   },
+   {
+    "cmd": "mv",
+    "man": "move (rename) files",
+    "what": "Moves files to another place, or renames them.",
+    "when": "Renaming 'final_final_v3.txt' to something less embarrassing.",
+    "example": [
+     "$ mv final_final_v3.txt report.txt",
+     "$ mv report.txt projects/",
+     "$ ls projects",
+     "report.txt"
+    ],
+    "tip": "Same command for move AND rename."
+   },
+   {
+    "cmd": "rm",
+    "man": "remove files or directories",
+    "what": "Deletes files and folders. No recycle bin. Gone is gone.",
+    "when": "Cleaning out junk files you'll never need again.",
+    "example": [
+     "$ rm old.txt",
+     "$ rm -i notes.txt",
+     "rm: remove regular file 'notes.txt'? n",
+     "$ rm -r old_folder"
+    ],
+    "tip": "Use -i while learning: it asks before deleting."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Which command creates an empty file?",
+    "options": [
+     "touch",
+     "mkdir",
+     "cp"
+    ],
+    "answer": 0,
+    "why": "touch creates the file if it doesn't exist."
+   },
+   {
+    "q": "mkdir flag to create nested folders at once?",
+    "options": [
+     "-p",
+     "-n",
+     "-r"
+    ],
+    "answer": 0,
+    "why": "-p makes parent folders as needed."
+   },
+   {
+    "q": "To copy a whole folder with cp you need...",
+    "options": [
+     "-r",
+     "-a only",
+     "-f"
+    ],
+    "answer": 0,
+    "why": "-r copies folders recursively."
+   },
+   {
+    "q": "How do you rename a file?",
+    "options": [
+     "cp",
+     "rn",
+     "mv"
+    ],
+    "answer": 2,
+    "why": "mv old new renames it."
+   },
+   {
+    "q": "Which flag makes rm ask before deleting?",
+    "options": [
+     "-y",
+     "-q",
+     "-i"
+    ],
+    "answer": 2,
+    "why": "-i = interactive, prompts each time."
+   }
+  ]
+ },
+ {
+  "day": 3,
+  "theme": "Reading files",
+  "lessons": [
+   {
+    "cmd": "cat",
+    "man": "concatenate files and print on the standard output",
+    "what": "Prints a file's contents on the screen.",
+    "when": "Quick peek at a small file without opening an editor.",
+    "example": [
+     "$ cat todo.txt",
+     "1. Learn Linux",
+     "2. Drink water",
+     "$ cat -n todo.txt",
+     "     1  1. Learn Linux",
+     "     2  2. Drink water"
+    ],
+    "tip": "-n adds line numbers."
+   },
+   {
+    "cmd": "less",
+    "man": "opposite of more",
+    "what": "Opens a long file one screen at a time, so you can scroll and search.",
+    "when": "The file is 5,000 lines long and cat just dumped it all on you.",
+    "example": [
+     "$ less big_notes.txt",
+     "",
+     "  Space  next page    b  back",
+     "  /word  search       q  quit"
+    ],
+    "tip": "Yes, the man page really says 'opposite of more'."
+   },
+   {
+    "cmd": "head",
+    "man": "output the first part of files",
+    "what": "Shows the first lines of a file (10 by default).",
+    "when": "You only want to see the top of a file, like column names in a CSV.",
+    "example": [
+     "$ head -n 3 marks.csv",
+     "name,maths,physics",
+     "asha,91,84",
+     "ravi,78,88"
+    ],
+    "tip": "-n sets how many lines you want."
+   },
+   {
+    "cmd": "tail",
+    "man": "output the last part of files",
+    "what": "Shows the last lines of a file (10 by default).",
+    "when": "Checking the latest messages at the bottom of a log file.",
+    "example": [
+     "$ tail -n 2 diary.txt",
+     "Day 41: learned tail",
+     "Day 42: still learning",
+     "$ tail -f app.log"
+    ],
+    "tip": "-f keeps watching for new lines live. Ctrl + C to stop."
+   },
+   {
+    "cmd": "wc",
+    "man": "print newline, word, and byte counts for each file",
+    "what": "Counts lines, words and bytes in a file.",
+    "when": "Your essay must be 500 words. Is it? wc knows.",
+    "example": [
+     "$ wc essay.txt",
+     "  12  498 2954 essay.txt",
+     "$ wc -w essay.txt",
+     "498 essay.txt"
+    ],
+    "tip": "-l lines, -w words, -c bytes."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Which command prints a whole file to screen?",
+    "options": [
+     "cat",
+     "head",
+     "pwd"
+    ],
+    "answer": 0,
+    "why": "cat prints the full file."
+   },
+   {
+    "q": "In less, which key searches?",
+    "options": [
+     "?find",
+     "s",
+     "/"
+    ],
+    "answer": 2,
+    "why": "Type / then the word, press Enter."
+   },
+   {
+    "q": "head shows how many lines by default?",
+    "options": [
+     "10",
+     "5",
+     "20"
+    ],
+    "answer": 0,
+    "why": "Both head and tail default to 10."
+   },
+   {
+    "q": "Which tail flag follows a file live?",
+    "options": [
+     "-w",
+     "-l",
+     "-f"
+    ],
+    "answer": 2,
+    "why": "-f = follow new lines as they arrive."
+   },
+   {
+    "q": "How do you count only words?",
+    "options": [
+     "wc -l",
+     "wc -w",
+     "wc -c"
+    ],
+    "answer": 1,
+    "why": "-w = words."
+   }
+  ]
+ },
+ {
+  "day": 4,
+  "theme": "Who, where and when",
+  "lessons": [
+   {
+    "cmd": "whoami",
+    "man": "print effective user name",
+    "what": "Prints the username you're logged in as.",
+    "when": "Identity crisis? Or just checking if you're the normal user or root.",
+    "example": [
+     "$ whoami",
+     "user",
+     "$ sudo whoami",
+     "root"
+    ],
+    "tip": "With sudo you temporarily become root."
+   },
+   {
+    "cmd": "hostname",
+    "man": "show or set the system's host name",
+    "what": "Shows the name of the computer you're using.",
+    "when": "You have 3 terminals open on 3 machines. Which one is this?",
+    "example": [
+     "$ hostname",
+     "lab-pc-07"
+    ],
+    "tip": "The name usually also appears in your prompt."
+   },
+   {
+    "cmd": "date",
+    "man": "print or set the system date and time",
+    "what": "Shows the current date and time, in any format you like.",
+    "when": "Naming a file with today's date so you never lose track.",
+    "example": [
+     "$ date",
+     "Tue Nov 10 09:15:02 IST 2026",
+     "$ date +%F",
+     "2026-11-10"
+    ],
+    "tip": "+%F gives YYYY-MM-DD, perfect for file names."
+   },
+   {
+    "cmd": "cal",
+    "man": "display a calendar",
+    "what": "Prints a calendar right in the terminal.",
+    "when": "How many days until exams? Count them without leaving the terminal.",
+    "example": [
+     "$ cal",
+     "   November 2026",
+     "Su Mo Tu We Th Fr Sa",
+     "1  2  3  4  5  6  7",
+     "..."
+    ],
+    "tip": "cal -3 shows last, this and next month. (Install: ncal package)"
+   },
+   {
+    "cmd": "uptime",
+    "man": "Tell how long the system has been running.",
+    "what": "Shows how long the computer has been on, and how busy it is.",
+    "when": "Your laptop feels slow. Has it been on for 40 days straight?",
+    "example": [
+     "$ uptime",
+     " 09:16:44 up 3 days,  2:10,  1 user,",
+     "  load average: 0.15, 0.20, 0.18",
+     "$ uptime -p",
+     "up 3 days, 2 hours, 10 minutes"
+    ],
+    "tip": "-p gives a pretty, human-friendly version."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Which command prints your username?",
+    "options": [
+     "whoami",
+     "hostname",
+     "id -g"
+    ],
+    "answer": 0,
+    "why": "whoami prints the current user name."
+   },
+   {
+    "q": "hostname shows the name of...",
+    "options": [
+     "The folder",
+     "The computer",
+     "The user"
+    ],
+    "answer": 1,
+    "why": "It's the machine's name."
+   },
+   {
+    "q": "date +%F prints...",
+    "options": [
+     "YYYY-MM-DD",
+     "Day name",
+     "Only the time"
+    ],
+    "answer": 0,
+    "why": "%F is the full date: 2026-11-10."
+   },
+   {
+    "q": "cal -3 shows how many months?",
+    "options": [
+     "3",
+     "1",
+     "12"
+    ],
+    "answer": 0,
+    "why": "Previous, current and next month."
+   },
+   {
+    "q": "uptime -p does what?",
+    "options": [
+     "Pauses the PC",
+     "Pretty output",
+     "Prints the PID"
+    ],
+    "answer": 1,
+    "why": "-p = pretty, human-readable uptime."
+   }
+  ]
+ },
+ {
+  "day": 5,
+  "theme": "Talking to your shell",
+  "lessons": [
+   {
+    "cmd": "echo",
+    "man": "display a line of text",
+    "what": "Prints text or a variable's value.",
+    "when": "Quickly writing a line into a file, or checking what a variable holds.",
+    "example": [
+     "$ echo \"Hello, Linux\"",
+     "Hello, Linux",
+     "$ echo $HOME",
+     "/home/user",
+     "$ echo \"buy milk\" >> todo.txt"
+    ],
+    "tip": ">> adds to the end of a file instead of replacing it."
+   },
+   {
+    "cmd": "history",
+    "man": "Display or manipulate the history list.",
+    "what": "Shows the commands you typed before.",
+    "when": "You ran a perfect command yesterday and can't remember it.",
+    "example": [
+     "$ history | tail -n 3",
+     "  501  cd projects",
+     "  502  ls -a",
+     "  503  history | tail -n 3",
+     "$ !502"
+    ],
+    "tip": "!502 re-runs command number 502. Ctrl + R searches."
+   },
+   {
+    "cmd": "which",
+    "man": "locate a command",
+    "what": "Shows where a command's program file lives.",
+    "when": "You installed Python twice. Which one actually runs?",
+    "example": [
+     "$ which python3",
+     "/usr/bin/python3",
+     "$ which ls",
+     "/usr/bin/ls"
+    ],
+    "tip": "No output = command not found in your PATH."
+   },
+   {
+    "cmd": "type",
+    "man": "Display information about command type.",
+    "what": "Tells you what a command really is: a program, alias or shell builtin.",
+    "when": "You type ls and it shows colours. Is it secretly an alias?",
+    "example": [
+     "$ type cd",
+     "cd is a shell builtin",
+     "$ type ls",
+     "ls is aliased to `ls --color=auto'"
+    ],
+    "tip": "Builtins (like cd) live inside the shell itself."
+   },
+   {
+    "cmd": "whatis",
+    "man": "display one-line manual page descriptions",
+    "what": "Gives a one-line summary of what a command does.",
+    "when": "You see a strange command in a tutorial. What is it, in one line?",
+    "example": [
+     "$ whatis tar",
+     "tar (1)  - an archiving utility",
+     "$ whatis cp mv",
+     "cp (1)  - copy files and directories",
+     "mv (1)  - move (rename) files"
+    ],
+    "tip": "It's the 'trailer' of the man page."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "echo \"hi\" >> notes.txt does what?",
+    "options": [
+     "Adds 'hi' at the end",
+     "Replaces notes.txt",
+     "Deletes notes.txt"
+    ],
+    "answer": 0,
+    "why": ">> appends; > would overwrite."
+   },
+   {
+    "q": "!502 does what?",
+    "options": [
+     "Deletes line 502",
+     "Shows 502 lines",
+     "Re-runs command 502"
+    ],
+    "answer": 2,
+    "why": "!N re-runs history entry N."
+   },
+   {
+    "q": "which python3 shows...",
+    "options": [
+     "Python's history",
+     "Path to the program",
+     "Python's version"
+    ],
+    "answer": 1,
+    "why": "which prints the program's location."
+   },
+   {
+    "q": "type cd says cd is a...",
+    "options": [
+     "Alias",
+     "File in /usr/bin",
+     "Shell builtin"
+    ],
+    "answer": 2,
+    "why": "cd is built into the shell."
+   },
+   {
+    "q": "whatis gives you...",
+    "options": [
+     "Full manual",
+     "Command history",
+     "One-line summary"
+    ],
+    "answer": 2,
+    "why": "It prints the man page's one-liner."
+   }
+  ]
+ }
+]

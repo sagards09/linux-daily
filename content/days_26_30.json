@@ -1,0 +1,608 @@
+[
+ {
+  "day": 26,
+  "theme": "Debugging detective tools",
+  "lessons": [
+   {
+    "cmd": "lsof",
+    "man": "list open files",
+    "what": "Shows which programs have which files (or ports) open.",
+    "when": "'Device is busy' when ejecting a pendrive. Who's still using it?",
+    "example": [
+     "$ lsof /mnt/usb",
+     "COMMAND  PID USER  NAME",
+     "vlc     3120 user  /mnt/usb/song.mp3",
+     "$ lsof -i :8080"
+    ],
+    "tip": "In Linux, almost everything is a file. Even network ports."
+   },
+   {
+    "cmd": "strace",
+    "man": "trace system calls and signals",
+    "what": "Shows every request a program makes to the system.",
+    "when": "A program fails silently. Spy on what it's actually trying to do.",
+    "example": [
+     "$ strace -e trace=openat cat notes.txt",
+     "openat(AT_FDCWD, \"notes.txt\", O_RDONLY) = 3"
+    ],
+    "tip": "Look for '= -1 ENOENT': a file it couldn't find."
+   },
+   {
+    "cmd": "ldd",
+    "man": "print shared object dependencies",
+    "what": "Lists the libraries a program needs to run.",
+    "when": "'error while loading shared libraries'. Which one is missing?",
+    "example": [
+     "$ ldd /usr/bin/ls",
+     "libselinux.so.1 => /lib/x86_64-linux-gnu/...",
+     "libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6"
+    ],
+    "tip": "'not found' in the output = your missing library."
+   },
+   {
+    "cmd": "nc",
+    "man": "arbitrary TCP and UDP connections and listens",
+    "what": "Opens raw network connections: the 'Swiss army knife' of networking.",
+    "when": "Checking if a port on a server is open, or a 2-terminal chat demo.",
+    "example": [
+     "$ nc -zv lab.college.edu 22",
+     "Connection to lab.college.edu 22 port succeeded!",
+     "$ nc -l 9000"
+    ],
+    "tip": "-z just scans, -v explains, -l listens."
+   },
+   {
+    "cmd": "traceroute",
+    "man": "print the route packets trace to network host",
+    "what": "Shows every stop your data takes to reach a website.",
+    "when": "Internet is slow. Is the problem your router or far away?",
+    "example": [
+     "$ traceroute google.com",
+     " 1  192.168.1.1   1.8 ms",
+     " 2  10.20.0.1     6.4 ms",
+     " 3  ..."
+    ],
+    "tip": "Hop 1 is usually your own Wi-Fi router."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "lsof -i :8080 shows...",
+    "options": [
+     "What's using port 8080",
+     "Logs",
+     "8080 files"
+    ],
+    "answer": 0,
+    "why": "-i = network files/ports."
+   },
+   {
+    "q": "strace shows a program's...",
+    "options": [
+     "System calls",
+     "Password",
+     "Source code"
+    ],
+    "answer": 0,
+    "why": "It traces syscalls."
+   },
+   {
+    "q": "ldd output 'not found' means...",
+    "options": [
+     "Missing user",
+     "Missing library",
+     "Missing disk"
+    ],
+    "answer": 1,
+    "why": "A required shared library isn't installed."
+   },
+   {
+    "q": "nc -zv host 22 checks...",
+    "options": [
+     "If port 22 is open",
+     "Disk space",
+     "Users"
+    ],
+    "answer": 0,
+    "why": "-z scan, -v verbose."
+   },
+   {
+    "q": "traceroute shows...",
+    "options": [
+     "The path to a host",
+     "Your files",
+     "Running services"
+    ],
+    "answer": 0,
+    "why": "Each network hop on the way."
+   }
+  ]
+ },
+ {
+  "day": 27,
+  "theme": "Disks: handle with care",
+  "lessons": [
+   {
+    "cmd": "dd",
+    "man": "convert and copy a file",
+    "what": "Copies data byte by byte. Often used to make bootable USBs.",
+    "when": "Writing a Linux ISO to a pendrive to install Linux on another PC.",
+    "example": [
+     "$ sudo dd if=ubuntu.iso of=/dev/sdb bs=4M status=progress",
+     "2.1 GB copied, 95 s, 22.6 MB/s"
+    ],
+    "tip": "Nicknamed 'disk destroyer'. Triple-check of=!"
+   },
+   {
+    "cmd": "blkid",
+    "man": "locate/print block device attributes",
+    "what": "Shows each partition's UUID, label and filesystem type.",
+    "when": "Is this pendrive FAT32 or ext4? Will Windows read it?",
+    "example": [
+     "$ sudo blkid /dev/sdb1",
+     "/dev/sdb1: LABEL=\"PENDRIVE\" UUID=\"1A2B-3C4D\" TYPE=\"vfat\""
+    ],
+    "tip": "vfat = FAT32, works on almost every device."
+   },
+   {
+    "cmd": "fdisk",
+    "man": "manipulate disk partition table",
+    "what": "Views and edits disk partitions.",
+    "when": "Checking how a disk is divided before installing a second OS.",
+    "example": [
+     "$ sudo fdisk -l /dev/sdb",
+     "Disk /dev/sdb: 14.6 GiB",
+     "Device     Start      End  Size Type",
+     "/dev/sdb1   2048 30031871 14.3G Linux"
+    ],
+    "tip": "-l only lists. Nothing changes until you press w."
+   },
+   {
+    "cmd": "mkfs",
+    "man": "build a Linux filesystem",
+    "what": "Formats a partition with a filesystem (erases everything on it).",
+    "when": "Formatting a pendrive fresh, like 'Format' in Windows.",
+    "example": [
+     "$ sudo mkfs.vfat -n PENDRIVE /dev/sdb1",
+     "$ sudo mkfs.ext4 /dev/sdb1"
+    ],
+    "tip": "ERASES the partition. Double-check with lsblk first."
+   },
+   {
+    "cmd": "umount",
+    "man": "unmount filesystems",
+    "what": "Safely detaches a drive before you unplug it.",
+    "when": "Before pulling out your pendrive. Always.",
+    "example": [
+     "$ sudo umount /mnt/usb",
+     "$ sudo umount /mnt/usb",
+     "umount: /mnt/usb: not mounted."
+    ],
+    "tip": "It's umount, not unmount. Yes, really."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "In dd, of= means...",
+    "options": [
+     "Old format",
+     "Output file/device",
+     "Off"
+    ],
+    "answer": 1,
+    "why": "if = input, of = output."
+   },
+   {
+    "q": "blkid TYPE=\"vfat\" means...",
+    "options": [
+     "Video file",
+     "FAT32 filesystem",
+     "Virtual file"
+    ],
+    "answer": 1,
+    "why": "vfat = FAT family."
+   },
+   {
+    "q": "fdisk -l does what?",
+    "options": [
+     "Formats",
+     "Lists partitions only",
+     "Locks disk"
+    ],
+    "answer": 1,
+    "why": "-l is read-only listing."
+   },
+   {
+    "q": "mkfs does what to the partition?",
+    "options": [
+     "Backs it up",
+     "Erases and formats it",
+     "Mounts it"
+    ],
+    "answer": 1,
+    "why": "New filesystem = old data gone."
+   },
+   {
+    "q": "How is the unmount command spelled?",
+    "options": [
+     "umount",
+     "unmount",
+     "dismount"
+    ],
+    "answer": 0,
+    "why": "umount, no n."
+   }
+  ]
+ },
+ {
+  "day": 28,
+  "theme": "Software, firewall and login history",
+  "lessons": [
+   {
+    "cmd": "apt",
+    "man": "command-line interface",
+    "what": "Installs, updates and removes software on Ubuntu/Debian.",
+    "when": "Installing VLC, Git or Python with one command. No setup wizards.",
+    "example": [
+     "$ sudo apt update",
+     "$ sudo apt install git",
+     "$ apt search video player",
+     "$ sudo apt remove vlc"
+    ],
+    "tip": "update refreshes the list, upgrade installs updates."
+   },
+   {
+    "cmd": "dpkg",
+    "man": "package manager for Debian",
+    "what": "Low-level tool for .deb packages, the engine under apt.",
+    "when": "You downloaded a .deb file (like VS Code or Chrome).",
+    "example": [
+     "$ sudo dpkg -i code_amd64.deb",
+     "$ dpkg -l | grep git",
+     "ii  git  1:2.43.0  amd64  fast, scalable..."
+    ],
+    "tip": "Dependency errors? Run sudo apt -f install."
+   },
+   {
+    "cmd": "ufw",
+    "man": "program for managing a netfilter firewall",
+    "what": "Easy firewall: choose what network traffic is allowed in.",
+    "when": "Turning on basic protection on your laptop in 2 commands.",
+    "example": [
+     "$ sudo ufw allow ssh",
+     "$ sudo ufw enable",
+     "$ sudo ufw status",
+     "22/tcp   ALLOW   Anywhere"
+    ],
+    "tip": "On a remote server, allow ssh BEFORE enabling!"
+   },
+   {
+    "cmd": "last",
+    "man": "show a listing of last logged in users",
+    "what": "Shows the history of logins and reboots.",
+    "when": "Did someone log into your account while you were away?",
+    "example": [
+     "$ last -n 3",
+     "user   tty2   Tue Nov 10 09:01  still logged in",
+     "reboot system boot  Tue Nov 10 08:59"
+    ],
+    "tip": "last reboot shows when the PC restarted."
+   },
+   {
+    "cmd": "w",
+    "man": "Show who is logged on and what they are doing.",
+    "what": "Shows who's logged in AND what they are running right now.",
+    "when": "Lab server is slow. Who's on it and what are they running?",
+    "example": [
+     "$ w",
+     "USER    TTY    IDLE  WHAT",
+     "user    tty2   1:02  bash",
+     "friend  pts/0  0.00s python3 train.py"
+    ],
+    "tip": "The shortest command in Linux? Contender for sure."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "apt update does what?",
+    "options": [
+     "Updates apt only",
+     "Refreshes the package list",
+     "Installs updates"
+    ],
+    "answer": 1,
+    "why": "upgrade is what installs updates."
+   },
+   {
+    "q": "To install a downloaded .deb file you use...",
+    "options": [
+     "dpkg -i",
+     "apt update",
+     "dpkg -l"
+    ],
+    "answer": 0,
+    "why": "-i = install."
+   },
+   {
+    "q": "Before ufw enable on a remote server you must...",
+    "options": [
+     "Delete rules",
+     "Reboot",
+     "Allow ssh"
+    ],
+    "answer": 2,
+    "why": "Otherwise you lock yourself out."
+   },
+   {
+    "q": "last reboot shows...",
+    "options": [
+     "When the PC restarted",
+     "Next reboot time",
+     "Reboot errors"
+    ],
+    "answer": 0,
+    "why": "Reboot entries from the login history."
+   },
+   {
+    "q": "w shows users AND...",
+    "options": [
+     "Their files",
+     "Their passwords",
+     "What they're running"
+    ],
+    "answer": 2,
+    "why": "The WHAT column."
+   }
+  ]
+ },
+ {
+  "day": 29,
+  "theme": "Scripting building blocks",
+  "lessons": [
+   {
+    "cmd": "test",
+    "man": "check file types and compare values",
+    "what": "Checks a condition: does a file exist? Is a number bigger?",
+    "when": "In scripts: 'only back up if the folder exists'.",
+    "example": [
+     "$ test -f notes.txt && echo \"exists\"",
+     "exists",
+     "$ [ 5 -gt 3 ] && echo \"yes\"",
+     "yes"
+    ],
+    "tip": "[ ... ] is the same as test. Spaces matter!"
+   },
+   {
+    "cmd": "read",
+    "man": "Read a line from the standard input and split it into fields.",
+    "what": "Asks the user to type something and stores it in a variable.",
+    "when": "Making your script interactive: 'Enter your name:'.",
+    "example": [
+     "$ read -p \"Your name: \" name",
+     "Your name: Priya",
+     "$ echo \"Hi $name\"",
+     "Hi Priya"
+    ],
+    "tip": "-s hides input (for passwords)."
+   },
+   {
+    "cmd": "expr",
+    "man": "evaluate expressions",
+    "what": "Does simple maths and string operations.",
+    "when": "Quick calculations inside older shell scripts.",
+    "example": [
+     "$ expr 7 + 3",
+     "10",
+     "$ expr 7 \\* 3",
+     "21",
+     "$ echo $((7 * 3))",
+     "21"
+    ],
+    "tip": "Modern bash: $(( )) is easier."
+   },
+   {
+    "cmd": "shuf",
+    "man": "generate random permutations",
+    "what": "Shuffles lines randomly, or picks random items.",
+    "when": "Picking a random student for the presentation. Fair and square.",
+    "example": [
+     "$ shuf -n 1 students.txt",
+     "meera",
+     "$ shuf -i 1-100 -n 1",
+     "42"
+    ],
+    "tip": "-n picks how many, -i gives a number range."
+   },
+   {
+    "cmd": "yes",
+    "man": "output a string repeatedly until killed",
+    "what": "Prints 'y' (or any text) forever.",
+    "when": "Auto-answering 'yes' to every question a command asks.",
+    "example": [
+     "$ yes | head -n 2",
+     "y",
+     "y",
+     "$ yes | sudo apt install vlc"
+    ],
+    "tip": "Most installers have -y, but yes works for anything."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "test -f file checks if...",
+    "options": [
+     "The file is fast",
+     "The file is full",
+     "The file exists"
+    ],
+    "answer": 2,
+    "why": "-f = exists and is a regular file."
+   },
+   {
+    "q": "read -s is useful for...",
+    "options": [
+     "Passwords",
+     "Sorting",
+     "Speed"
+    ],
+    "answer": 0,
+    "why": "-s = silent, no echo."
+   },
+   {
+    "q": "Modern bash alternative to expr 7 + 3?",
+    "options": [
+     "$((7 + 3))",
+     "calc 7+3",
+     "sum 7 3"
+    ],
+    "answer": 0,
+    "why": "Arithmetic expansion."
+   },
+   {
+    "q": "shuf -n 1 file does what?",
+    "options": [
+     "Deletes 1 line",
+     "Shows line 1",
+     "Picks 1 random line"
+    ],
+    "answer": 2,
+    "why": "Random sample of 1."
+   },
+   {
+    "q": "What does yes print by default?",
+    "options": [
+     "1",
+     "yes",
+     "y"
+    ],
+    "answer": 2,
+    "why": "Default output is y."
+   }
+  ]
+ },
+ {
+  "day": 30,
+  "theme": "Write real scripts",
+  "lessons": [
+   {
+    "cmd": "bash",
+    "man": "GNU Bourne-Again SHell",
+    "what": "The shell you've been typing into all month. It can also run script files.",
+    "when": "Turning 10 commands you always type into one file you run.",
+    "example": [
+     "#!/bin/bash",
+     "# backup.sh",
+     "tar -czf ~/bk_$(date +%F).tar.gz ~/notes",
+     "echo \"Backup done\"",
+     "$ bash backup.sh",
+     "Backup done"
+    ],
+    "tip": "#!/bin/bash on line 1 tells Linux who runs the file."
+   },
+   {
+    "cmd": "set",
+    "man": "Set or unset values of shell options and positional parameters.",
+    "what": "Turns on safety settings for your scripts.",
+    "when": "Stop a script the moment something fails, instead of causing chaos.",
+    "example": [
+     "#!/bin/bash",
+     "set -euo pipefail",
+     "cp notes.txt /backup/",
+     "echo \"never runs if cp fails\""
+    ],
+    "tip": "-e stop on error, -u no unset variables, -x debug."
+   },
+   {
+    "cmd": "trap",
+    "man": "Trap signals and other events.",
+    "what": "Runs cleanup code when a script exits or gets interrupted.",
+    "when": "Delete temporary files even if someone hits Ctrl + C.",
+    "example": [
+     "#!/bin/bash",
+     "tmp=$(mktemp)",
+     "trap 'rm -f \"$tmp\"' EXIT",
+     "echo \"working...\" > \"$tmp\""
+    ],
+    "tip": "EXIT runs on every exit, good or bad."
+   },
+   {
+    "cmd": "exit",
+    "man": "Exit the shell.",
+    "what": "Ends a script or shell with a status code.",
+    "when": "Telling the world 'this failed' (non-zero) or 'all good' (0).",
+    "example": [
+     "[ -f config.txt ] || { echo \"No config\"; exit 1; }",
+     "$ ./run.sh; echo $?",
+     "No config",
+     "1"
+    ],
+    "tip": "$? holds the last exit code. 0 = success."
+   },
+   {
+    "cmd": "wait",
+    "man": "Wait for job completion and return exit status.",
+    "what": "Pauses a script until background jobs finish.",
+    "when": "Run 3 downloads in parallel, then continue only when all are done.",
+    "example": [
+     "wget -q file1.zip &",
+     "wget -q file2.zip &",
+     "wait",
+     "echo \"All downloads done\""
+    ],
+    "tip": "& runs in background, wait gathers them back."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "What does #!/bin/bash at the top do?",
+    "options": [
+     "Makes it secret",
+     "Tells Linux to run it with bash",
+     "It's a comment only"
+    ],
+    "answer": 1,
+    "why": "It's the shebang line."
+   },
+   {
+    "q": "set -e makes a script...",
+    "options": [
+     "Run faster",
+     "Echo commands",
+     "Stop at the first error"
+    ],
+    "answer": 2,
+    "why": "-e = exit on error."
+   },
+   {
+    "q": "trap '...' EXIT runs code when...",
+    "options": [
+     "At startup",
+     "Only on success",
+     "The script ends"
+    ],
+    "answer": 2,
+    "why": "EXIT fires on any exit."
+   },
+   {
+    "q": "Exit code 0 means...",
+    "options": [
+     "Zero files",
+     "Error",
+     "Success"
+    ],
+    "answer": 2,
+    "why": "0 = success; non-zero = failure."
+   },
+   {
+    "q": "wait does what?",
+    "options": [
+     "Waits for input",
+     "Waits for background jobs",
+     "Sleeps 1 second"
+    ],
+    "answer": 1,
+    "why": "Blocks until jobs finish."
+   }
+  ]
+ }
+]

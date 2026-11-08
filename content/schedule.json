@@ -1,0 +1,1052 @@
+[
+ {
+  "id": "day01-1-pwd",
+  "day_offset": 0,
+  "time": "09:00"
+ },
+ {
+  "id": "day01-2-ls",
+  "day_offset": 0,
+  "time": "11:00"
+ },
+ {
+  "id": "day01-3-cd",
+  "day_offset": 0,
+  "time": "13:00"
+ },
+ {
+  "id": "day01-4-clear",
+  "day_offset": 0,
+  "time": "16:00"
+ },
+ {
+  "id": "day01-5-man",
+  "day_offset": 0,
+  "time": "18:00"
+ },
+ {
+  "id": "day01-6-quiz",
+  "day_offset": 0,
+  "time": "20:00"
+ },
+ {
+  "id": "day02-0-answers-for-day01",
+  "day_offset": 1,
+  "time": "08:00"
+ },
+ {
+  "id": "day02-1-touch",
+  "day_offset": 1,
+  "time": "09:00"
+ },
+ {
+  "id": "day02-2-mkdir",
+  "day_offset": 1,
+  "time": "11:00"
+ },
+ {
+  "id": "day02-3-cp",
+  "day_offset": 1,
+  "time": "13:00"
+ },
+ {
+  "id": "day02-4-mv",
+  "day_offset": 1,
+  "time": "16:00"
+ },
+ {
+  "id": "day02-5-rm",
+  "day_offset": 1,
+  "time": "18:00"
+ },
+ {
+  "id": "day02-6-quiz",
+  "day_offset": 1,
+  "time": "20:00"
+ },
+ {
+  "id": "day03-0-answers-for-day02",
+  "day_offset": 2,
+  "time": "08:00"
+ },
+ {
+  "id": "day03-1-cat",
+  "day_offset": 2,
+  "time": "09:00"
+ },
+ {
+  "id": "day03-2-less",
+  "day_offset": 2,
+  "time": "11:00"
+ },
+ {
+  "id": "day03-3-head",
+  "day_offset": 2,
+  "time": "13:00"
+ },
+ {
+  "id": "day03-4-tail",
+  "day_offset": 2,
+  "time": "16:00"
+ },
+ {
+  "id": "day03-5-wc",
+  "day_offset": 2,
+  "time": "18:00"
+ },
+ {
+  "id": "day03-6-quiz",
+  "day_offset": 2,
+  "time": "20:00"
+ },
+ {
+  "id": "day04-0-answers-for-day03",
+  "day_offset": 3,
+  "time": "08:00"
+ },
+ {
+  "id": "day04-1-whoami",
+  "day_offset": 3,
+  "time": "09:00"
+ },
+ {
+  "id": "day04-2-hostname",
+  "day_offset": 3,
+  "time": "11:00"
+ },
+ {
+  "id": "day04-3-date",
+  "day_offset": 3,
+  "time": "13:00"
+ },
+ {
+  "id": "day04-4-cal",
+  "day_offset": 3,
+  "time": "16:00"
+ },
+ {
+  "id": "day04-5-uptime",
+  "day_offset": 3,
+  "time": "18:00"
+ },
+ {
+  "id": "day04-6-quiz",
+  "day_offset": 3,
+  "time": "20:00"
+ },
+ {
+  "id": "day05-0-answers-for-day04",
+  "day_offset": 4,
+  "time": "08:00"
+ },
+ {
+  "id": "day05-1-echo",
+  "day_offset": 4,
+  "time": "09:00"
+ },
+ {
+  "id": "day05-2-history",
+  "day_offset": 4,
+  "time": "11:00"
+ },
+ {
+  "id": "day05-3-which",
+  "day_offset": 4,
+  "time": "13:00"
+ },
+ {
+  "id": "day05-4-type",
+  "day_offset": 4,
+  "time": "16:00"
+ },
+ {
+  "id": "day05-5-whatis",
+  "day_offset": 4,
+  "time": "18:00"
+ },
+ {
+  "id": "day05-6-quiz",
+  "day_offset": 4,
+  "time": "20:00"
+ },
+ {
+  "id": "day06-0-answers-for-day05",
+  "day_offset": 5,
+  "time": "08:00"
+ },
+ {
+  "id": "day06-1-rmdir",
+  "day_offset": 5,
+  "time": "09:00"
+ },
+ {
+  "id": "day06-2-file",
+  "day_offset": 5,
+  "time": "11:00"
+ },
+ {
+  "id": "day06-3-stat",
+  "day_offset": 5,
+  "time": "13:00"
+ },
+ {
+  "id": "day06-4-realpath",
+  "day_offset": 5,
+  "time": "16:00"
+ },
+ {
+  "id": "day06-5-basename",
+  "day_offset": 5,
+  "time": "18:00"
+ },
+ {
+  "id": "day06-6-quiz",
+  "day_offset": 5,
+  "time": "20:00"
+ },
+ {
+  "id": "day07-0-answers-for-day06",
+  "day_offset": 6,
+  "time": "08:00"
+ },
+ {
+  "id": "day07-1-sort",
+  "day_offset": 6,
+  "time": "09:00"
+ },
+ {
+  "id": "day07-2-uniq",
+  "day_offset": 6,
+  "time": "11:00"
+ },
+ {
+  "id": "day07-3-cut",
+  "day_offset": 6,
+  "time": "13:00"
+ },
+ {
+  "id": "day07-4-tr",
+  "day_offset": 6,
+  "time": "16:00"
+ },
+ {
+  "id": "day07-5-nl",
+  "day_offset": 6,
+  "time": "18:00"
+ },
+ {
+  "id": "day07-6-quiz",
+  "day_offset": 6,
+  "time": "20:00"
+ },
+ {
+  "id": "day08-0-answers-for-day07",
+  "day_offset": 7,
+  "time": "08:00"
+ },
+ {
+  "id": "day08-1-tac",
+  "day_offset": 7,
+  "time": "09:00"
+ },
+ {
+  "id": "day08-2-rev",
+  "day_offset": 7,
+  "time": "11:00"
+ },
+ {
+  "id": "day08-3-paste",
+  "day_offset": 7,
+  "time": "13:00"
+ },
+ {
+  "id": "day08-4-tee",
+  "day_offset": 7,
+  "time": "16:00"
+ },
+ {
+  "id": "day08-5-diff",
+  "day_offset": 7,
+  "time": "18:00"
+ },
+ {
+  "id": "day08-6-quiz",
+  "day_offset": 7,
+  "time": "20:00"
+ },
+ {
+  "id": "day09-0-answers-for-day08",
+  "day_offset": 8,
+  "time": "08:00"
+ },
+ {
+  "id": "day09-1-grep",
+  "day_offset": 8,
+  "time": "09:00"
+ },
+ {
+  "id": "day09-2-find",
+  "day_offset": 8,
+  "time": "11:00"
+ },
+ {
+  "id": "day09-3-cmp",
+  "day_offset": 8,
+  "time": "13:00"
+ },
+ {
+  "id": "day09-4-comm",
+  "day_offset": 8,
+  "time": "16:00"
+ },
+ {
+  "id": "day09-5-column",
+  "day_offset": 8,
+  "time": "18:00"
+ },
+ {
+  "id": "day09-6-quiz",
+  "day_offset": 8,
+  "time": "20:00"
+ },
+ {
+  "id": "day10-0-answers-for-day09",
+  "day_offset": 9,
+  "time": "08:00"
+ },
+ {
+  "id": "day10-1-tar",
+  "day_offset": 9,
+  "time": "09:00"
+ },
+ {
+  "id": "day10-2-gzip",
+  "day_offset": 9,
+  "time": "11:00"
+ },
+ {
+  "id": "day10-3-gunzip",
+  "day_offset": 9,
+  "time": "13:00"
+ },
+ {
+  "id": "day10-4-zip",
+  "day_offset": 9,
+  "time": "16:00"
+ },
+ {
+  "id": "day10-5-unzip",
+  "day_offset": 9,
+  "time": "18:00"
+ },
+ {
+  "id": "day10-6-quiz",
+  "day_offset": 9,
+  "time": "20:00"
+ },
+ {
+  "id": "day11-0-answers-for-day10",
+  "day_offset": 10,
+  "time": "08:00"
+ },
+ {
+  "id": "day11-1-chmod",
+  "day_offset": 10,
+  "time": "09:00"
+ },
+ {
+  "id": "day11-2-chown",
+  "day_offset": 10,
+  "time": "11:00"
+ },
+ {
+  "id": "day11-3-chgrp",
+  "day_offset": 10,
+  "time": "13:00"
+ },
+ {
+  "id": "day11-4-umask",
+  "day_offset": 10,
+  "time": "16:00"
+ },
+ {
+  "id": "day11-5-id",
+  "day_offset": 10,
+  "time": "18:00"
+ },
+ {
+  "id": "day11-6-quiz",
+  "day_offset": 10,
+  "time": "20:00"
+ },
+ {
+  "id": "day12-0-answers-for-day11",
+  "day_offset": 11,
+  "time": "08:00"
+ },
+ {
+  "id": "day12-1-sudo",
+  "day_offset": 11,
+  "time": "09:00"
+ },
+ {
+  "id": "day12-2-su",
+  "day_offset": 11,
+  "time": "11:00"
+ },
+ {
+  "id": "day12-3-passwd",
+  "day_offset": 11,
+  "time": "13:00"
+ },
+ {
+  "id": "day12-4-groups",
+  "day_offset": 11,
+  "time": "16:00"
+ },
+ {
+  "id": "day12-5-who",
+  "day_offset": 11,
+  "time": "18:00"
+ },
+ {
+  "id": "day12-6-quiz",
+  "day_offset": 11,
+  "time": "20:00"
+ },
+ {
+  "id": "day13-0-answers-for-day12",
+  "day_offset": 12,
+  "time": "08:00"
+ },
+ {
+  "id": "day13-1-ps",
+  "day_offset": 12,
+  "time": "09:00"
+ },
+ {
+  "id": "day13-2-top",
+  "day_offset": 12,
+  "time": "11:00"
+ },
+ {
+  "id": "day13-3-kill",
+  "day_offset": 12,
+  "time": "13:00"
+ },
+ {
+  "id": "day13-4-pkill",
+  "day_offset": 12,
+  "time": "16:00"
+ },
+ {
+  "id": "day13-5-pgrep",
+  "day_offset": 12,
+  "time": "18:00"
+ },
+ {
+  "id": "day13-6-quiz",
+  "day_offset": 12,
+  "time": "20:00"
+ },
+ {
+  "id": "day14-0-answers-for-day13",
+  "day_offset": 13,
+  "time": "08:00"
+ },
+ {
+  "id": "day14-1-jobs",
+  "day_offset": 13,
+  "time": "09:00"
+ },
+ {
+  "id": "day14-2-bg",
+  "day_offset": 13,
+  "time": "11:00"
+ },
+ {
+  "id": "day14-3-fg",
+  "day_offset": 13,
+  "time": "13:00"
+ },
+ {
+  "id": "day14-4-nohup",
+  "day_offset": 13,
+  "time": "16:00"
+ },
+ {
+  "id": "day14-5-sleep",
+  "day_offset": 13,
+  "time": "18:00"
+ },
+ {
+  "id": "day14-6-quiz",
+  "day_offset": 13,
+  "time": "20:00"
+ },
+ {
+  "id": "day15-0-answers-for-day14",
+  "day_offset": 14,
+  "time": "08:00"
+ },
+ {
+  "id": "day15-1-df",
+  "day_offset": 14,
+  "time": "09:00"
+ },
+ {
+  "id": "day15-2-du",
+  "day_offset": 14,
+  "time": "11:00"
+ },
+ {
+  "id": "day15-3-free",
+  "day_offset": 14,
+  "time": "13:00"
+ },
+ {
+  "id": "day15-4-lsblk",
+  "day_offset": 14,
+  "time": "16:00"
+ },
+ {
+  "id": "day15-5-mount",
+  "day_offset": 14,
+  "time": "18:00"
+ },
+ {
+  "id": "day15-6-quiz",
+  "day_offset": 14,
+  "time": "20:00"
+ },
+ {
+  "id": "day16-0-answers-for-day15",
+  "day_offset": 15,
+  "time": "08:00"
+ },
+ {
+  "id": "day16-1-alias",
+  "day_offset": 15,
+  "time": "09:00"
+ },
+ {
+  "id": "day16-2-unalias",
+  "day_offset": 15,
+  "time": "11:00"
+ },
+ {
+  "id": "day16-3-export",
+  "day_offset": 15,
+  "time": "13:00"
+ },
+ {
+  "id": "day16-4-env",
+  "day_offset": 15,
+  "time": "16:00"
+ },
+ {
+  "id": "day16-5-source",
+  "day_offset": 15,
+  "time": "18:00"
+ },
+ {
+  "id": "day16-6-quiz",
+  "day_offset": 15,
+  "time": "20:00"
+ },
+ {
+  "id": "day17-0-answers-for-day16",
+  "day_offset": 16,
+  "time": "08:00"
+ },
+ {
+  "id": "day17-1-ln",
+  "day_offset": 16,
+  "time": "09:00"
+ },
+ {
+  "id": "day17-2-readlink",
+  "day_offset": 16,
+  "time": "11:00"
+ },
+ {
+  "id": "day17-3-dirname",
+  "day_offset": 16,
+  "time": "13:00"
+ },
+ {
+  "id": "day17-4-split",
+  "day_offset": 16,
+  "time": "16:00"
+ },
+ {
+  "id": "day17-5-truncate",
+  "day_offset": 16,
+  "time": "18:00"
+ },
+ {
+  "id": "day17-6-quiz",
+  "day_offset": 16,
+  "time": "20:00"
+ },
+ {
+  "id": "day18-0-answers-for-day17",
+  "day_offset": 17,
+  "time": "08:00"
+ },
+ {
+  "id": "day18-1-md5sum",
+  "day_offset": 17,
+  "time": "09:00"
+ },
+ {
+  "id": "day18-2-sha256sum",
+  "day_offset": 17,
+  "time": "11:00"
+ },
+ {
+  "id": "day18-3-base64",
+  "day_offset": 17,
+  "time": "13:00"
+ },
+ {
+  "id": "day18-4-od",
+  "day_offset": 17,
+  "time": "16:00"
+ },
+ {
+  "id": "day18-5-strings",
+  "day_offset": 17,
+  "time": "18:00"
+ },
+ {
+  "id": "day18-6-quiz",
+  "day_offset": 17,
+  "time": "20:00"
+ },
+ {
+  "id": "day19-0-answers-for-day18",
+  "day_offset": 18,
+  "time": "08:00"
+ },
+ {
+  "id": "day19-1-ping",
+  "day_offset": 18,
+  "time": "09:00"
+ },
+ {
+  "id": "day19-2-ip",
+  "day_offset": 18,
+  "time": "11:00"
+ },
+ {
+  "id": "day19-3-ss",
+  "day_offset": 18,
+  "time": "13:00"
+ },
+ {
+  "id": "day19-4-dig",
+  "day_offset": 18,
+  "time": "16:00"
+ },
+ {
+  "id": "day19-5-curl",
+  "day_offset": 18,
+  "time": "18:00"
+ },
+ {
+  "id": "day19-6-quiz",
+  "day_offset": 18,
+  "time": "20:00"
+ },
+ {
+  "id": "day20-0-answers-for-day19",
+  "day_offset": 19,
+  "time": "08:00"
+ },
+ {
+  "id": "day20-1-wget",
+  "day_offset": 19,
+  "time": "09:00"
+ },
+ {
+  "id": "day20-2-ssh",
+  "day_offset": 19,
+  "time": "11:00"
+ },
+ {
+  "id": "day20-3-scp",
+  "day_offset": 19,
+  "time": "13:00"
+ },
+ {
+  "id": "day20-4-rsync",
+  "day_offset": 19,
+  "time": "16:00"
+ },
+ {
+  "id": "day20-5-ssh-keygen",
+  "day_offset": 19,
+  "time": "18:00"
+ },
+ {
+  "id": "day20-6-quiz",
+  "day_offset": 19,
+  "time": "20:00"
+ },
+ {
+  "id": "day21-0-answers-for-day20",
+  "day_offset": 20,
+  "time": "08:00"
+ },
+ {
+  "id": "day21-1-sed",
+  "day_offset": 20,
+  "time": "09:00"
+ },
+ {
+  "id": "day21-2-awk",
+  "day_offset": 20,
+  "time": "11:00"
+ },
+ {
+  "id": "day21-3-xargs",
+  "day_offset": 20,
+  "time": "13:00"
+ },
+ {
+  "id": "day21-4-printf",
+  "day_offset": 20,
+  "time": "16:00"
+ },
+ {
+  "id": "day21-5-seq",
+  "day_offset": 20,
+  "time": "18:00"
+ },
+ {
+  "id": "day21-6-quiz",
+  "day_offset": 20,
+  "time": "20:00"
+ },
+ {
+  "id": "day22-0-answers-for-day21",
+  "day_offset": 21,
+  "time": "08:00"
+ },
+ {
+  "id": "day22-1-watch",
+  "day_offset": 21,
+  "time": "09:00"
+ },
+ {
+  "id": "day22-2-time",
+  "day_offset": 21,
+  "time": "11:00"
+ },
+ {
+  "id": "day22-3-timeout",
+  "day_offset": 21,
+  "time": "13:00"
+ },
+ {
+  "id": "day22-4-nice",
+  "day_offset": 21,
+  "time": "16:00"
+ },
+ {
+  "id": "day22-5-renice",
+  "day_offset": 21,
+  "time": "18:00"
+ },
+ {
+  "id": "day22-6-quiz",
+  "day_offset": 21,
+  "time": "20:00"
+ },
+ {
+  "id": "day23-0-answers-for-day22",
+  "day_offset": 22,
+  "time": "08:00"
+ },
+ {
+  "id": "day23-1-uname",
+  "day_offset": 22,
+  "time": "09:00"
+ },
+ {
+  "id": "day23-2-lscpu",
+  "day_offset": 22,
+  "time": "11:00"
+ },
+ {
+  "id": "day23-3-dmesg",
+  "day_offset": 22,
+  "time": "13:00"
+ },
+ {
+  "id": "day23-4-systemctl",
+  "day_offset": 22,
+  "time": "16:00"
+ },
+ {
+  "id": "day23-5-journalctl",
+  "day_offset": 22,
+  "time": "18:00"
+ },
+ {
+  "id": "day23-6-quiz",
+  "day_offset": 22,
+  "time": "20:00"
+ },
+ {
+  "id": "day24-0-answers-for-day23",
+  "day_offset": 23,
+  "time": "08:00"
+ },
+ {
+  "id": "day24-1-crontab",
+  "day_offset": 23,
+  "time": "09:00"
+ },
+ {
+  "id": "day24-2-at",
+  "day_offset": 23,
+  "time": "11:00"
+ },
+ {
+  "id": "day24-3-timedatectl",
+  "day_offset": 23,
+  "time": "13:00"
+ },
+ {
+  "id": "day24-4-hostnamectl",
+  "day_offset": 23,
+  "time": "16:00"
+ },
+ {
+  "id": "day24-5-logger",
+  "day_offset": 23,
+  "time": "18:00"
+ },
+ {
+  "id": "day24-6-quiz",
+  "day_offset": 23,
+  "time": "20:00"
+ },
+ {
+  "id": "day25-0-answers-for-day24",
+  "day_offset": 24,
+  "time": "08:00"
+ },
+ {
+  "id": "day25-1-useradd",
+  "day_offset": 24,
+  "time": "09:00"
+ },
+ {
+  "id": "day25-2-usermod",
+  "day_offset": 24,
+  "time": "11:00"
+ },
+ {
+  "id": "day25-3-userdel",
+  "day_offset": 24,
+  "time": "13:00"
+ },
+ {
+  "id": "day25-4-groupadd",
+  "day_offset": 24,
+  "time": "16:00"
+ },
+ {
+  "id": "day25-5-chage",
+  "day_offset": 24,
+  "time": "18:00"
+ },
+ {
+  "id": "day25-6-quiz",
+  "day_offset": 24,
+  "time": "20:00"
+ },
+ {
+  "id": "day26-0-answers-for-day25",
+  "day_offset": 25,
+  "time": "08:00"
+ },
+ {
+  "id": "day26-1-lsof",
+  "day_offset": 25,
+  "time": "09:00"
+ },
+ {
+  "id": "day26-2-strace",
+  "day_offset": 25,
+  "time": "11:00"
+ },
+ {
+  "id": "day26-3-ldd",
+  "day_offset": 25,
+  "time": "13:00"
+ },
+ {
+  "id": "day26-4-nc",
+  "day_offset": 25,
+  "time": "16:00"
+ },
+ {
+  "id": "day26-5-traceroute",
+  "day_offset": 25,
+  "time": "18:00"
+ },
+ {
+  "id": "day26-6-quiz",
+  "day_offset": 25,
+  "time": "20:00"
+ },
+ {
+  "id": "day27-0-answers-for-day26",
+  "day_offset": 26,
+  "time": "08:00"
+ },
+ {
+  "id": "day27-1-dd",
+  "day_offset": 26,
+  "time": "09:00"
+ },
+ {
+  "id": "day27-2-blkid",
+  "day_offset": 26,
+  "time": "11:00"
+ },
+ {
+  "id": "day27-3-fdisk",
+  "day_offset": 26,
+  "time": "13:00"
+ },
+ {
+  "id": "day27-4-mkfs",
+  "day_offset": 26,
+  "time": "16:00"
+ },
+ {
+  "id": "day27-5-umount",
+  "day_offset": 26,
+  "time": "18:00"
+ },
+ {
+  "id": "day27-6-quiz",
+  "day_offset": 26,
+  "time": "20:00"
+ },
+ {
+  "id": "day28-0-answers-for-day27",
+  "day_offset": 27,
+  "time": "08:00"
+ },
+ {
+  "id": "day28-1-apt",
+  "day_offset": 27,
+  "time": "09:00"
+ },
+ {
+  "id": "day28-2-dpkg",
+  "day_offset": 27,
+  "time": "11:00"
+ },
+ {
+  "id": "day28-3-ufw",
+  "day_offset": 27,
+  "time": "13:00"
+ },
+ {
+  "id": "day28-4-last",
+  "day_offset": 27,
+  "time": "16:00"
+ },
+ {
+  "id": "day28-5-w",
+  "day_offset": 27,
+  "time": "18:00"
+ },
+ {
+  "id": "day28-6-quiz",
+  "day_offset": 27,
+  "time": "20:00"
+ },
+ {
+  "id": "day29-0-answers-for-day28",
+  "day_offset": 28,
+  "time": "08:00"
+ },
+ {
+  "id": "day29-1-test",
+  "day_offset": 28,
+  "time": "09:00"
+ },
+ {
+  "id": "day29-2-read",
+  "day_offset": 28,
+  "time": "11:00"
+ },
+ {
+  "id": "day29-3-expr",
+  "day_offset": 28,
+  "time": "13:00"
+ },
+ {
+  "id": "day29-4-shuf",
+  "day_offset": 28,
+  "time": "16:00"
+ },
+ {
+  "id": "day29-5-yes",
+  "day_offset": 28,
+  "time": "18:00"
+ },
+ {
+  "id": "day29-6-quiz",
+  "day_offset": 28,
+  "time": "20:00"
+ },
+ {
+  "id": "day30-0-answers-for-day29",
+  "day_offset": 29,
+  "time": "08:00"
+ },
+ {
+  "id": "day30-1-bash",
+  "day_offset": 29,
+  "time": "09:00"
+ },
+ {
+  "id": "day30-2-set",
+  "day_offset": 29,
+  "time": "11:00"
+ },
+ {
+  "id": "day30-3-trap",
+  "day_offset": 29,
+  "time": "13:00"
+ },
+ {
+  "id": "day30-4-exit",
+  "day_offset": 29,
+  "time": "16:00"
+ },
+ {
+  "id": "day30-5-wait",
+  "day_offset": 29,
+  "time": "18:00"
+ },
+ {
+  "id": "day30-6-quiz",
+  "day_offset": 29,
+  "time": "20:00"
+ },
+ {
+  "id": "day31-0-answers-for-day30",
+  "day_offset": 30,
+  "time": "08:00"
+ }
+]

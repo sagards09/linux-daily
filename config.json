@@ -1,0 +1,21 @@
+{
+  "handle": "@noobtodayroottomorrow",
+  "series_length": 30,
+  "github_user": "sagards09",
+  "github_repo": "linux-daily",
+  "branch": "main",
+  "tagline": "Noob today. Root tomorrow.",
+  "start_date": "2026-11-10",
+  "slots": {
+    "answers": "08:00",
+    "lessons": [
+      "09:00",
+      "11:00",
+      "13:00",
+      "16:00",
+      "18:00"
+    ],
+    "quiz": "20:00"
+  },
+  "timezone_offset": "+05:30"
+}

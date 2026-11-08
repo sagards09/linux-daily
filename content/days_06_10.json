@@ -1,0 +1,623 @@
+[
+ {
+  "day": 6,
+  "theme": "Getting to know your files",
+  "lessons": [
+   {
+    "cmd": "rmdir",
+    "man": "remove empty directories",
+    "what": "Deletes a folder, but only if it's empty.",
+    "when": "Safely removing empty folders without risking anything inside.",
+    "example": [
+     "$ rmdir old_empty",
+     "$ rmdir notes",
+     "rmdir: failed to remove 'notes':",
+     "Directory not empty"
+    ],
+    "tip": "The 'safe mode' of deleting folders."
+   },
+   {
+    "cmd": "file",
+    "man": "determine file type",
+    "what": "Tells you what kind of file something really is, no matter its name.",
+    "when": "Someone sent 'photo.txt'. Is it really text? Or a JPEG in disguise?",
+    "example": [
+     "$ file photo.txt",
+     "photo.txt: JPEG image data, 1920x1080",
+     "$ file notes.md",
+     "notes.md: ASCII text"
+    ],
+    "tip": "It reads the file's content, not just the extension."
+   },
+   {
+    "cmd": "stat",
+    "man": "display file or file system status",
+    "what": "Shows full details of a file: size, permissions, owner and timestamps.",
+    "when": "When was this file last changed? stat has the receipts.",
+    "example": [
+     "$ stat report.txt",
+     "  Size: 2954   Blocks: 8   regular file",
+     "Access: (0644/-rw-r--r--)",
+     "Modify: 2026-11-10 09:20:11"
+    ],
+    "tip": "stat -c %s file prints just the size in bytes."
+   },
+   {
+    "cmd": "realpath",
+    "man": "print the resolved path",
+    "what": "Converts a short or relative path into the full absolute path.",
+    "when": "You need the full path to paste into a config or share with a friend.",
+    "example": [
+     "$ realpath notes/day1.txt",
+     "/home/user/college/notes/day1.txt",
+     "$ realpath ..",
+     "/home/user"
+    ],
+    "tip": "Great inside scripts to avoid path confusion."
+   },
+   {
+    "cmd": "basename",
+    "man": "strip directory and suffix from filenames",
+    "what": "Takes a path and gives you just the file name.",
+    "when": "In scripts, when you only care about 'song.mp3', not the long folder path.",
+    "example": [
+     "$ basename /home/user/music/song.mp3",
+     "song.mp3",
+     "$ basename /home/user/music/song.mp3 .mp3",
+     "song"
+    ],
+    "tip": "Add the extension as a 2nd argument to remove it."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "rmdir only deletes folders that are...",
+    "options": [
+     "Hidden",
+     "Owned by root",
+     "Empty"
+    ],
+    "answer": 2,
+    "why": "rmdir refuses non-empty folders."
+   },
+   {
+    "q": "file decides the type by looking at...",
+    "options": [
+     "The size",
+     "The extension",
+     "The content"
+    ],
+    "answer": 2,
+    "why": "It inspects the data inside the file."
+   },
+   {
+    "q": "Which command shows a file's timestamps?",
+    "options": [
+     "stat",
+     "cat",
+     "wc"
+    ],
+    "answer": 0,
+    "why": "stat lists access/modify/change times."
+   },
+   {
+    "q": "realpath prints...",
+    "options": [
+     "The owner",
+     "The full absolute path",
+     "The file size"
+    ],
+    "answer": 1,
+    "why": "It resolves to the absolute path."
+   },
+   {
+    "q": "basename /a/b/c.txt .txt prints...",
+    "options": [
+     "c",
+     "/a/b",
+     "c.txt"
+    ],
+    "answer": 0,
+    "why": "The suffix .txt is removed too."
+   }
+  ]
+ },
+ {
+  "day": 7,
+  "theme": "Text tools, part 1",
+  "lessons": [
+   {
+    "cmd": "sort",
+    "man": "sort lines of text files",
+    "what": "Arranges lines in order: alphabetical, numeric or reverse.",
+    "when": "Turning a messy list of names or marks into a neat ranked list.",
+    "example": [
+     "$ sort names.txt",
+     "asha",
+     "meera",
+     "ravi",
+     "$ sort -n -r marks.txt",
+     "98",
+     "91",
+     "76"
+    ],
+    "tip": "-n numeric, -r reverse, -h human sizes like 2K 1G."
+   },
+   {
+    "cmd": "uniq",
+    "man": "report or omit repeated lines",
+    "what": "Removes repeated lines that sit next to each other.",
+    "when": "Your attendance list has duplicate names. Clean it up.",
+    "example": [
+     "$ sort attendance.txt | uniq",
+     "asha",
+     "ravi",
+     "$ sort votes.txt | uniq -c",
+     "      3 pizza",
+     "      5 biryani"
+    ],
+    "tip": "Always sort first: uniq only catches neighbours."
+   },
+   {
+    "cmd": "cut",
+    "man": "remove sections from each line of files",
+    "what": "Picks out specific columns or characters from each line.",
+    "when": "You only want the 'name' column from a big CSV.",
+    "example": [
+     "$ cut -d, -f1 marks.csv",
+     "name",
+     "asha",
+     "ravi"
+    ],
+    "tip": "-d = separator, -f = which field (column)."
+   },
+   {
+    "cmd": "tr",
+    "man": "translate or delete characters",
+    "what": "Replaces or deletes characters as text flows through.",
+    "when": "Converting text to uppercase, or removing all the digits.",
+    "example": [
+     "$ echo \"linux rocks\" | tr a-z A-Z",
+     "LINUX ROCKS",
+     "$ echo \"r0b0t\" | tr -d 0",
+     "rbt"
+    ],
+    "tip": "-d deletes the characters you list."
+   },
+   {
+    "cmd": "nl",
+    "man": "number lines of files",
+    "what": "Adds line numbers to a file's lines.",
+    "when": "Sharing code with a friend: 'check line 12' is easier with numbers.",
+    "example": [
+     "$ nl todo.txt",
+     "     1  Learn Linux",
+     "     2  Practise daily"
+    ],
+    "tip": "By default, nl skips numbering empty lines."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Which flag makes sort compare numbers?",
+    "options": [
+     "-k",
+     "-n",
+     "-u"
+    ],
+    "answer": 1,
+    "why": "-n sorts numerically: 9 before 10."
+   },
+   {
+    "q": "Why sort before uniq?",
+    "options": [
+     "It's faster",
+     "uniq only removes adjacent duplicates",
+     "No reason"
+    ],
+    "answer": 1,
+    "why": "Sorting puts duplicates next to each other."
+   },
+   {
+    "q": "cut -d, -f2 gives you...",
+    "options": [
+     "2nd column of a CSV",
+     "2nd line",
+     "2 characters"
+    ],
+    "answer": 0,
+    "why": "Comma separator, field 2."
+   },
+   {
+    "q": "tr a-z A-Z does what?",
+    "options": [
+     "Sorts A to Z",
+     "Converts to uppercase",
+     "Deletes letters"
+    ],
+    "answer": 1,
+    "why": "Each lowercase letter maps to uppercase."
+   },
+   {
+    "q": "nl is used to...",
+    "options": [
+     "Create new lines",
+     "Count words",
+     "Number lines"
+    ],
+    "answer": 2,
+    "why": "nl = number lines."
+   }
+  ]
+ },
+ {
+  "day": 8,
+  "theme": "Text tools, part 2",
+  "lessons": [
+   {
+    "cmd": "tac",
+    "man": "concatenate and print files in reverse",
+    "what": "Prints a file upside down: last line first.",
+    "when": "Reading a diary or log newest-first. (It's cat spelled backwards!)",
+    "example": [
+     "$ cat steps.txt",
+     "wake up",
+     "code",
+     "$ tac steps.txt",
+     "code",
+     "wake up"
+    ],
+    "tip": "cat -> tac. Linux has jokes too."
+   },
+   {
+    "cmd": "rev",
+    "man": "reverse lines characterwise",
+    "what": "Reverses the characters in each line.",
+    "when": "Checking palindromes, or grabbing the last part of a line easily.",
+    "example": [
+     "$ echo \"racecar\" | rev",
+     "racecar",
+     "$ echo \"linux\" | rev",
+     "xunil"
+    ],
+    "tip": "rev | cut | rev is a classic trick for 'last column'."
+   },
+   {
+    "cmd": "paste",
+    "man": "merge lines of files",
+    "what": "Joins files side by side, line by line.",
+    "when": "You have names in one file and marks in another. Stitch them together.",
+    "example": [
+     "$ paste names.txt marks.txt",
+     "asha    91",
+     "ravi    78",
+     "$ paste -d, names.txt marks.txt",
+     "asha,91"
+    ],
+    "tip": "-d sets the separator (default is a tab)."
+   },
+   {
+    "cmd": "tee",
+    "man": "read from standard input and write to standard output and files",
+    "what": "Shows output on screen AND saves it to a file at the same time.",
+    "when": "You want to watch the results and keep a copy too.",
+    "example": [
+     "$ ls | tee files.txt",
+     "notes",
+     "projects",
+     "$ echo \"done\" | tee -a log.txt",
+     "done"
+    ],
+    "tip": "-a appends instead of overwriting. Named after a T-pipe."
+   },
+   {
+    "cmd": "diff",
+    "man": "compare files line by line",
+    "what": "Shows exactly what changed between two files.",
+    "when": "Your code worked yesterday and not today. What did you change?",
+    "example": [
+     "$ diff old.txt new.txt",
+     "2c2",
+     "< colour: blue",
+     "---",
+     "> colour: green"
+    ],
+    "tip": "diff -u gives the format used by Git."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "tac prints a file...",
+    "options": [
+     "Sorted",
+     "Without spaces",
+     "Last line first"
+    ],
+    "answer": 2,
+    "why": "It's cat in reverse line order."
+   },
+   {
+    "q": "echo abc | rev prints...",
+    "options": [
+     "ABC",
+     "abc",
+     "cba"
+    ],
+    "answer": 2,
+    "why": "rev reverses characters on each line."
+   },
+   {
+    "q": "paste joins files...",
+    "options": [
+     "Alphabetically",
+     "One after another",
+     "Side by side"
+    ],
+    "answer": 2,
+    "why": "Line 1 with line 1, line 2 with line 2..."
+   },
+   {
+    "q": "tee -a does what?",
+    "options": [
+     "Appends to the file",
+     "Shows all files",
+     "Asks first"
+    ],
+    "answer": 0,
+    "why": "-a = append."
+   },
+   {
+    "q": "diff is used to...",
+    "options": [
+     "Delete files",
+     "Compare two files",
+     "Divide numbers"
+    ],
+    "answer": 1,
+    "why": "It shows line-by-line differences."
+   }
+  ]
+ },
+ {
+  "day": 9,
+  "theme": "Searching like a pro",
+  "lessons": [
+   {
+    "cmd": "grep",
+    "man": "print lines that match patterns",
+    "what": "Searches for a word inside files and prints matching lines.",
+    "when": "Which of your 50 note files mentions 'exam date'?",
+    "example": [
+     "$ grep -i \"exam\" notes.txt",
+     "Exam on Monday",
+     "$ grep -rn \"TODO\" projects/",
+     "projects/app.py:14:# TODO fix login"
+    ],
+    "tip": "-i ignore case, -r all files in folder, -n line numbers."
+   },
+   {
+    "cmd": "find",
+    "man": "search for files in a directory hierarchy",
+    "what": "Finds files by name, type, size or age.",
+    "when": "You saved an assignment somewhere. Somewhere. Find it.",
+    "example": [
+     "$ find ~ -name \"*.pdf\"",
+     "/home/user/college/assignment1.pdf",
+     "$ find . -type f -mtime -1",
+     "./notes/today.txt"
+    ],
+    "tip": "-mtime -1 = modified in the last 24 hours."
+   },
+   {
+    "cmd": "cmp",
+    "man": "compare two files byte by byte",
+    "what": "Checks if two files are exactly identical.",
+    "when": "Are these two downloaded files the same, or is one corrupted?",
+    "example": [
+     "$ cmp a.jpg b.jpg",
+     "a.jpg b.jpg differ: byte 211, line 3",
+     "$ cmp a.jpg a_copy.jpg",
+     "(no output = identical)"
+    ],
+    "tip": "Works on any file, not just text."
+   },
+   {
+    "cmd": "comm",
+    "man": "compare two sorted files line by line",
+    "what": "Shows lines unique to file 1, unique to file 2, and common to both.",
+    "when": "Who's in both the football team and the chess club?",
+    "example": [
+     "$ comm -12 football.txt chess.txt",
+     "meera",
+     "ravi"
+    ],
+    "tip": "Files must be sorted. -12 shows only common lines."
+   },
+   {
+    "cmd": "column",
+    "man": "columnate lists",
+    "what": "Formats messy text into neat, aligned columns.",
+    "when": "Making a CSV readable in the terminal, like a quick table.",
+    "example": [
+     "$ column -t -s, marks.csv",
+     "name  maths  physics",
+     "asha  91     84",
+     "ravi  78     88"
+    ],
+    "tip": "-t makes a table, -s sets the separator."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "grep -r searches...",
+    "options": [
+     "One file",
+     "Only hidden files",
+     "All files in a folder"
+    ],
+    "answer": 2,
+    "why": "-r = recursive through folders."
+   },
+   {
+    "q": "find . -name \"*.pdf\" finds...",
+    "options": [
+     "Text inside PDFs",
+     "Folders named pdf",
+     "PDF files"
+    ],
+    "answer": 2,
+    "why": "It matches file names ending in .pdf."
+   },
+   {
+    "q": "cmp with no output means...",
+    "options": [
+     "Files are identical",
+     "Error",
+     "Files are empty"
+    ],
+    "answer": 0,
+    "why": "Silence = no difference found."
+   },
+   {
+    "q": "comm needs its input files to be...",
+    "options": [
+     "Sorted",
+     "Encrypted",
+     "Small"
+    ],
+    "answer": 0,
+    "why": "comm compares sorted lists."
+   },
+   {
+    "q": "column -t does what?",
+    "options": [
+     "Counts tabs",
+     "Makes aligned columns",
+     "Deletes columns"
+    ],
+    "answer": 1,
+    "why": "-t builds a table layout."
+   }
+  ]
+ },
+ {
+  "day": 10,
+  "theme": "Packing and compressing",
+  "lessons": [
+   {
+    "cmd": "tar",
+    "man": "an archiving utility",
+    "what": "Bundles many files into one archive (and can compress it).",
+    "when": "Submitting a whole project folder as a single file.",
+    "example": [
+     "$ tar -czf project.tar.gz project/",
+     "$ tar -tzf project.tar.gz",
+     "$ tar -xzf project.tar.gz"
+    ],
+    "tip": "c create, x extract, t list, z gzip, f file name."
+   },
+   {
+    "cmd": "gzip",
+    "man": "compress or expand files",
+    "what": "Compresses a file to make it smaller (adds .gz).",
+    "when": "A huge text file is eating your disk. Shrink it.",
+    "example": [
+     "$ ls -lh notes.txt",
+     "-rw-r--r-- 1 user user 12M notes.txt",
+     "$ gzip notes.txt",
+     "$ ls -lh notes.txt.gz",
+     "-rw-r--r-- 1 user user 2.1M notes.txt.gz"
+    ],
+    "tip": "gzip replaces the original. -k keeps it."
+   },
+   {
+    "cmd": "gunzip",
+    "man": "compress or expand files",
+    "what": "Decompresses a .gz file back to normal.",
+    "when": "You downloaded data.csv.gz and need the actual CSV.",
+    "example": [
+     "$ gunzip data.csv.gz",
+     "$ ls",
+     "data.csv"
+    ],
+    "tip": "Same as gzip -d."
+   },
+   {
+    "cmd": "zip",
+    "man": "package and compress (archive) files",
+    "what": "Creates a .zip archive, the format every OS understands.",
+    "when": "Sending files to a friend who uses Windows.",
+    "example": [
+     "$ zip -r photos.zip photos/",
+     "  adding: photos/ (stored 0%)",
+     "  adding: photos/trip.jpg (deflated 3%)"
+    ],
+    "tip": "-r includes everything inside folders."
+   },
+   {
+    "cmd": "unzip",
+    "man": "list, test and extract compressed files in a ZIP archive",
+    "what": "Extracts files from a .zip archive.",
+    "when": "Your lecturer sent 'lab_files.zip'. Open it up.",
+    "example": [
+     "$ unzip -l lab_files.zip",
+     "$ unzip lab_files.zip -d lab/",
+     "  inflating: lab/exercise1.c"
+    ],
+    "tip": "-l lists contents first, -d picks where to extract."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "In tar -czf, what does c mean?",
+    "options": [
+     "Create",
+     "Compress",
+     "Copy"
+    ],
+    "answer": 0,
+    "why": "c = create a new archive (z does compression)."
+   },
+   {
+    "q": "gzip file.txt leaves you with...",
+    "options": [
+     "file.zip",
+     "Both files",
+     "file.txt.gz only"
+    ],
+    "answer": 2,
+    "why": "gzip replaces the original unless you use -k."
+   },
+   {
+    "q": "gunzip is the same as...",
+    "options": [
+     "gzip -d",
+     "gzip -k",
+     "tar -x"
+    ],
+    "answer": 0,
+    "why": "-d = decompress."
+   },
+   {
+    "q": "zip -r is needed for...",
+    "options": [
+     "Read-only files",
+     "Folders",
+     "Renaming"
+    ],
+    "answer": 1,
+    "why": "-r recurses into folders."
+   },
+   {
+    "q": "unzip -l does what?",
+    "options": [
+     "Lists contents",
+     "Locks the zip",
+     "Extracts to /l"
+    ],
+    "answer": 0,
+    "why": "-l lists files without extracting."
+   }
+  ]
+ }
+]

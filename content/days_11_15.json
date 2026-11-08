@@ -1,0 +1,609 @@
+[
+ {
+  "day": 11,
+  "theme": "Permissions and ownership",
+  "lessons": [
+   {
+    "cmd": "chmod",
+    "man": "change file mode bits",
+    "what": "Changes who can read, write or run a file.",
+    "when": "You wrote a script but Linux says 'Permission denied'. Make it runnable.",
+    "example": [
+     "$ ./hello.sh",
+     "bash: ./hello.sh: Permission denied",
+     "$ chmod +x hello.sh",
+     "$ ./hello.sh",
+     "Hello!"
+    ],
+    "tip": "Numbers: r=4 w=2 x=1. So 7 = rwx, 6 = rw-, 4 = r--."
+   },
+   {
+    "cmd": "chown",
+    "man": "change file owner and group",
+    "what": "Changes which user (and group) owns a file.",
+    "when": "You created files using sudo and now root owns them. Take them back.",
+    "example": [
+     "$ ls -l notes.txt",
+     "-rw-r--r-- 1 root root 120 notes.txt",
+     "$ sudo chown user:user notes.txt",
+     "-rw-r--r-- 1 user user 120 notes.txt"
+    ],
+    "tip": "user:group changes both at once. -R for folders."
+   },
+   {
+    "cmd": "chgrp",
+    "man": "change group ownership",
+    "what": "Changes only the group that owns a file.",
+    "when": "Sharing a project folder with your team's group.",
+    "example": [
+     "$ sudo chgrp team project.txt",
+     "$ ls -l project.txt",
+     "-rw-rw-r-- 1 user team 340 project.txt"
+    ],
+    "tip": "Groups let several users share access."
+   },
+   {
+    "cmd": "umask",
+    "man": "Display or set file mode mask.",
+    "what": "Sets the default permissions for every new file you create.",
+    "when": "You want new files to be private by default.",
+    "example": [
+     "$ umask",
+     "0022",
+     "$ umask 077",
+     "$ touch secret.txt",
+     "$ ls -l secret.txt",
+     "-rw------- 1 user user 0 secret.txt"
+    ],
+    "tip": "umask removes permissions. 077 = only you."
+   },
+   {
+    "cmd": "id",
+    "man": "print real and effective user and group IDs",
+    "what": "Shows your user ID and every group you belong to.",
+    "when": "'Permission denied' on a shared folder. Are you even in that group?",
+    "example": [
+     "$ id",
+     "uid=1000(user) gid=1000(user)",
+     "groups=1000(user),27(sudo),1001(team)"
+    ],
+    "tip": "uid 0 is always root."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "chmod 755 gives the owner...",
+    "options": [
+     "rwx",
+     "rw-",
+     "r--"
+    ],
+    "answer": 0,
+    "why": "7 = 4+2+1 = read, write, execute."
+   },
+   {
+    "q": "chown user:team file changes...",
+    "options": [
+     "Permissions",
+     "Only the user",
+     "User and group"
+    ],
+    "answer": 2,
+    "why": "user:group sets both."
+   },
+   {
+    "q": "chgrp changes...",
+    "options": [
+     "The file name",
+     "The size",
+     "The group"
+    ],
+    "answer": 2,
+    "why": "chgrp = change group."
+   },
+   {
+    "q": "With umask 077, new files can be read by...",
+    "options": [
+     "Everyone",
+     "Only root",
+     "Only you"
+    ],
+    "answer": 2,
+    "why": "077 removes all access for group and others."
+   },
+   {
+    "q": "Which uid always belongs to root?",
+    "options": [
+     "1",
+     "0",
+     "1000"
+    ],
+    "answer": 1,
+    "why": "Root is uid 0."
+   }
+  ]
+ },
+ {
+  "day": 12,
+  "theme": "Users and superpowers",
+  "lessons": [
+   {
+    "cmd": "sudo",
+    "man": "execute a command as another user",
+    "what": "Runs a single command with admin (root) powers.",
+    "when": "Installing software or changing system files. With great power...",
+    "example": [
+     "$ apt update",
+     "Permission denied",
+     "$ sudo apt update",
+     "[sudo] password for user:"
+    ],
+    "tip": "sudo !! re-runs your last command with sudo."
+   },
+   {
+    "cmd": "su",
+    "man": "run a command with substitute user and group ID",
+    "what": "Switches you to another user account in the terminal.",
+    "when": "Testing how things look from another user's account.",
+    "example": [
+     "$ su - friend",
+     "Password:",
+     "$ whoami",
+     "friend",
+     "$ exit"
+    ],
+    "tip": "The - gives you that user's full login environment."
+   },
+   {
+    "cmd": "passwd",
+    "man": "change user password",
+    "what": "Changes your password.",
+    "when": "Your password is 'password123'. Please. Change it.",
+    "example": [
+     "$ passwd",
+     "Current password:",
+     "New password:",
+     "passwd: password updated successfully"
+    ],
+    "tip": "Nothing appears while typing. That's normal."
+   },
+   {
+    "cmd": "groups",
+    "man": "print the groups a user is in",
+    "what": "Lists the groups you (or another user) belong to.",
+    "when": "Checking if you were added to the 'docker' or 'sudo' group.",
+    "example": [
+     "$ groups",
+     "user sudo team",
+     "$ groups friend",
+     "friend : friend"
+    ],
+    "tip": "New group added? Log out and in to see it."
+   },
+   {
+    "cmd": "who",
+    "man": "show who is logged on",
+    "what": "Shows who is logged into this computer right now.",
+    "when": "On a shared lab server: is anyone else using it?",
+    "example": [
+     "$ who",
+     "user     tty2   2026-11-10 09:01",
+     "friend   pts/0  2026-11-10 09:40"
+    ],
+    "tip": "who am i shows just your own session."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "sudo !! does what?",
+    "options": [
+     "Re-runs last command as root",
+     "Logs out",
+     "Deletes history"
+    ],
+    "answer": 0,
+    "why": "!! = last command."
+   },
+   {
+    "q": "What does the - in su - friend do?",
+    "options": [
+     "Gives a full login environment",
+     "Nothing",
+     "Removes the user"
+    ],
+    "answer": 0,
+    "why": "It loads that user's login settings."
+   },
+   {
+    "q": "Typing a password in passwd shows...",
+    "options": [
+     "Nothing",
+     "The letters",
+     "Stars"
+    ],
+    "answer": 0,
+    "why": "Input is hidden completely."
+   },
+   {
+    "q": "Which command lists your groups?",
+    "options": [
+     "users -g",
+     "who",
+     "groups"
+    ],
+    "answer": 2,
+    "why": "groups prints group memberships."
+   },
+   {
+    "q": "who shows...",
+    "options": [
+     "Your password",
+     "All user accounts",
+     "Logged-in users"
+    ],
+    "answer": 2,
+    "why": "Only current sessions."
+   }
+  ]
+ },
+ {
+  "day": 13,
+  "theme": "Processes: what's running?",
+  "lessons": [
+   {
+    "cmd": "ps",
+    "man": "report a snapshot of the current processes.",
+    "what": "Lists running programs (processes) with their IDs.",
+    "when": "Is that program still running in the background?",
+    "example": [
+     "$ ps aux | grep python",
+     "user  2314  1.2  0.8 python3 app.py"
+    ],
+    "tip": "2nd column = PID, the process's ID number."
+   },
+   {
+    "cmd": "top",
+    "man": "display Linux processes",
+    "what": "Live dashboard of what's using your CPU and memory.",
+    "when": "Fan going crazy, laptop is lagging. Who's the culprit?",
+    "example": [
+     "$ top",
+     "  PID USER   %CPU %MEM COMMAND",
+     " 2314 user   97.0  8.1 python3",
+     " 1102 user    3.2  4.0 firefox"
+    ],
+    "tip": "Inside top: P sorts by CPU, M by memory, q quits."
+   },
+   {
+    "cmd": "kill",
+    "man": "send a signal to a process",
+    "what": "Sends a signal to a process, usually to stop it.",
+    "when": "A program froze and won't close. Time to step in.",
+    "example": [
+     "$ kill 2314",
+     "$ kill -9 2314"
+    ],
+    "tip": "Plain kill asks politely. -9 forces it. Use -9 last."
+   },
+   {
+    "cmd": "pkill",
+    "man": "look up or signal processes based on name and other attributes",
+    "what": "Stops processes by name instead of by number.",
+    "when": "You don't know the PID, you just know Firefox is frozen.",
+    "example": [
+     "$ pkill firefox",
+     "$ pkill -u friend"
+    ],
+    "tip": "-u stops every process of that user."
+   },
+   {
+    "cmd": "pgrep",
+    "man": "look up or signal processes based on name and other attributes",
+    "what": "Finds the PIDs of processes by name.",
+    "when": "Quick check: is my server script still running?",
+    "example": [
+     "$ pgrep -l python",
+     "2314 python3",
+     "2390 python3"
+    ],
+    "tip": "-l shows names too. pgrep + pkill are a pair."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "In ps aux output, the PID is...",
+    "options": [
+     "A password",
+     "A file path",
+     "A process ID number"
+    ],
+    "answer": 2,
+    "why": "PID = Process ID."
+   },
+   {
+    "q": "Inside top, which key sorts by memory?",
+    "options": [
+     "T",
+     "M",
+     "S"
+    ],
+    "answer": 1,
+    "why": "M = memory, P = CPU."
+   },
+   {
+    "q": "kill -9 is...",
+    "options": [
+     "A polite request",
+     "A restart",
+     "A forced stop"
+    ],
+    "answer": 2,
+    "why": "Signal 9 (SIGKILL) can't be ignored."
+   },
+   {
+    "q": "pkill firefox stops processes by...",
+    "options": [
+     "PID",
+     "User ID only",
+     "Name"
+    ],
+    "answer": 2,
+    "why": "pkill matches on name."
+   },
+   {
+    "q": "pgrep -l python prints...",
+    "options": [
+     "Logs",
+     "Python version",
+     "PIDs and names"
+    ],
+    "answer": 2,
+    "why": "-l lists names next to PIDs."
+   }
+  ]
+ },
+ {
+  "day": 14,
+  "theme": "Jobs: multitasking in one terminal",
+  "lessons": [
+   {
+    "cmd": "jobs",
+    "man": "Display status of jobs.",
+    "what": "Lists programs you started from this terminal that are paused or in the background.",
+    "when": "You paused a few things with Ctrl+Z and lost track of them.",
+    "example": [
+     "$ jobs",
+     "[1]-  Stopped    nano notes.txt",
+     "[2]+  Running    sleep 300 &"
+    ],
+    "tip": "Ctrl + Z pauses the current program."
+   },
+   {
+    "cmd": "bg",
+    "man": "Move jobs to the background.",
+    "what": "Resumes a paused job and lets it run in the background.",
+    "when": "A long download is hogging your terminal. Push it to the background.",
+    "example": [
+     "$ ./download.sh",
+     "^Z",
+     "[1]+  Stopped    ./download.sh",
+     "$ bg",
+     "[1]+ ./download.sh &"
+    ],
+    "tip": "Adding & at the end starts a job in background directly."
+   },
+   {
+    "cmd": "fg",
+    "man": "Move job to the foreground.",
+    "what": "Brings a background or paused job back to the front.",
+    "when": "You paused your editor to check something. Now get back to it.",
+    "example": [
+     "$ jobs",
+     "[1]+  Stopped    nano notes.txt",
+     "$ fg %1",
+     "(nano is back)"
+    ],
+    "tip": "%1, %2... pick which job."
+   },
+   {
+    "cmd": "nohup",
+    "man": "run a command immune to hangups, with output to a non-tty",
+    "what": "Keeps a program running even after you close the terminal.",
+    "when": "Starting a long task, then closing your laptop lid and going to class.",
+    "example": [
+     "$ nohup ./train_model.sh &",
+     "nohup: ignoring input and appending",
+     "output to 'nohup.out'"
+    ],
+    "tip": "Output goes to nohup.out by default."
+   },
+   {
+    "cmd": "sleep",
+    "man": "delay for a specified amount of time",
+    "what": "Waits for a set time, then continues.",
+    "when": "In scripts: 'wait 5 seconds, then try again'.",
+    "example": [
+     "$ sleep 5",
+     "$ sleep 2m && echo \"Tea is ready!\"",
+     "Tea is ready!"
+    ],
+    "tip": "Units: s seconds, m minutes, h hours."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Ctrl + Z does what to a running program?",
+    "options": [
+     "Saves it",
+     "Kills it",
+     "Pauses it"
+    ],
+    "answer": 2,
+    "why": "It suspends (stops) the job."
+   },
+   {
+    "q": "bg does what?",
+    "options": [
+     "Deletes jobs",
+     "Shows background image",
+     "Resumes a job in the background"
+    ],
+    "answer": 2,
+    "why": "bg = continue in background."
+   },
+   {
+    "q": "fg %2 brings which job forward?",
+    "options": [
+     "Process ID 2",
+     "The 2nd terminal",
+     "Job 2"
+    ],
+    "answer": 2,
+    "why": "%2 refers to job number 2."
+   },
+   {
+    "q": "nohup keeps a command running after...",
+    "options": [
+     "You close the terminal",
+     "A reboot",
+     "You delete it"
+    ],
+    "answer": 0,
+    "why": "It ignores the hangup signal."
+   },
+   {
+    "q": "sleep 2m waits for...",
+    "options": [
+     "2 months",
+     "2 minutes",
+     "2 milliseconds"
+    ],
+    "answer": 1,
+    "why": "m = minutes."
+   }
+  ]
+ },
+ {
+  "day": 15,
+  "theme": "Disks and memory",
+  "lessons": [
+   {
+    "cmd": "df",
+    "man": "report file system space usage",
+    "what": "Shows how much disk space is used and free.",
+    "when": "'Disk full' error. Let's see how bad it is.",
+    "example": [
+     "$ df -h /",
+     "Filesystem  Size  Used Avail Use% Mounted on",
+     "/dev/sda2   234G  198G   24G  90% /"
+    ],
+    "tip": "-h = human-readable (G, M) sizes."
+   },
+   {
+    "cmd": "du",
+    "man": "estimate file space usage",
+    "what": "Shows how much space files and folders take.",
+    "when": "Disk is full. Which folder is the space monster?",
+    "example": [
+     "$ du -sh * | sort -h",
+     "4.0K notes",
+     "1.3G projects",
+     "38G  movies"
+    ],
+    "tip": "-s summary, -h human sizes. Pair with sort -h."
+   },
+   {
+    "cmd": "free",
+    "man": "Display amount of free and used memory in the system",
+    "what": "Shows how much RAM is used and available.",
+    "when": "Too many Chrome tabs? Check if you're out of memory.",
+    "example": [
+     "$ free -h",
+     "        total   used   free  available",
+     "Mem:     15Gi  9.1Gi  1.2Gi     5.6Gi"
+    ],
+    "tip": "Look at 'available', not 'free'."
+   },
+   {
+    "cmd": "lsblk",
+    "man": "list block devices",
+    "what": "Lists your disks, USB drives and their partitions as a tree.",
+    "when": "You plugged in a pendrive. What name did Linux give it?",
+    "example": [
+     "$ lsblk",
+     "NAME   SIZE TYPE MOUNTPOINTS",
+     "sda    238G disk",
+     "├─sda1 512M part /boot/efi",
+     "└─sda2 237G part /",
+     "sdb     16G disk"
+    ],
+    "tip": "sdb here is the new pendrive."
+   },
+   {
+    "cmd": "mount",
+    "man": "mount a filesystem",
+    "what": "Attaches a disk or pendrive to a folder so you can open its files.",
+    "when": "Your pendrive shows up in lsblk but you can't open it yet.",
+    "example": [
+     "$ sudo mkdir -p /mnt/usb",
+     "$ sudo mount /dev/sdb1 /mnt/usb",
+     "$ ls /mnt/usb",
+     "songs  resume.pdf"
+    ],
+    "tip": "Linux treats drives as folders. Mounting = plugging in."
+   }
+  ],
+  "quiz": [
+   {
+    "q": "df -h shows...",
+    "options": [
+     "CPU speed",
+     "Disk space",
+     "RAM usage"
+    ],
+    "answer": 1,
+    "why": "df = disk free."
+   },
+   {
+    "q": "Best combo to find the biggest folders?",
+    "options": [
+     "ls -s",
+     "df | sort",
+     "du -sh * | sort -h"
+    ],
+    "answer": 2,
+    "why": "du sizes + human-sorted."
+   },
+   {
+    "q": "In free -h, which column matters most?",
+    "options": [
+     "shared",
+     "buff/cache",
+     "available"
+    ],
+    "answer": 2,
+    "why": "'available' = what apps can actually use."
+   },
+   {
+    "q": "lsblk lists...",
+    "options": [
+     "Bluetooth devices",
+     "Blocked users",
+     "Disks and partitions"
+    ],
+    "answer": 2,
+    "why": "Block devices = storage."
+   },
+   {
+    "q": "mount does what?",
+    "options": [
+     "Copies a drive",
+     "Formats a drive",
+     "Attaches a drive to a folder"
+    ],
+    "answer": 2,
+    "why": "It makes the drive's files accessible."
+   }
+  ]
+ }
+]

@@ -1,0 +1,54 @@
+name: Instagram auto-post
+
+on:
+  schedule:
+    # Every hour at :05 IST, from 8:05 AM to 9:05 PM IST (cron is in UTC).
+    # The script only posts when something in content/schedule.json is due.
+    - cron: "35 2-15 * * *"
+  workflow_dispatch:         # run by hand from the Actions tab
+    inputs:
+      dry_run:
+        description: "Dry run (don't actually post)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write            # lets the bot save state.json
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Post if something is due
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_API_HOST: ${{ vars.IG_API_HOST }}
+          IG_API_VERSION: ${{ vars.IG_API_VERSION }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python scripts/post.py --dry-run
+          else
+            python scripts/post.py
+          fi
+
+      - name: Save progress
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name  "linux-daily-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Posted $(python -c 'import json;print(json.load(open("state.json"))["history"][-1]["id"])')"
+            git push
+          fi

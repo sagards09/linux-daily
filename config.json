@@ -1,5 +1,5 @@
 {
-  "handle": "@noobtodayroottomorrow",
+  "handle": "@noob2pro.tech",
   "series_length": 30,
   "github_user": "sagards09",
   "github_repo": "linux-daily",
@@ -15,7 +15,12 @@
       "16:00",
       "18:00"
     ],
-    "quiz": "20:00"
+    "quiz": "20:00",
+    "reel": "19:00"
   },
-  "timezone_offset": "+05:30"
+  "timezone_offset": "+05:30",
+  "handle_spoken": "noob to pro dot tech",
+  "series": "LINUX SERIES",
+  "voice": "Rishi",
+  "voice_rate": 165
 }

@@ -44,9 +44,25 @@ def due_at(item):
     return dt.datetime(day.year, day.month, day.day, h, m, tzinfo=TZ)
 
 
+def is_reel(pid):
+    return pid.endswith("-reel")
+
+
+def local_file(pid):
+    return ROOT / ("reels" if is_reel(pid) else "posts") / f"{pid}.{'mp4' if is_reel(pid) else 'jpg'}"
+
+
 def image_url(pid):
+    folder, ext = ("reels", "mp4") if is_reel(pid) else ("posts", "jpg")
     return (f"https://raw.githubusercontent.com/{CFG['github_user']}/"
-            f"{CFG['github_repo']}/{CFG['branch']}/posts/{pid}.jpg")
+            f"{CFG['github_repo']}/{CFG['branch']}/{folder}/{pid}.{ext}")
+
+
+def postable(it, now):
+    """Reels are optional: only post them if the video exists and isn't >12h late."""
+    if not is_reel(it["id"]):
+        return True
+    return local_file(it["id"]).exists() and now - due_at(it) < dt.timedelta(hours=12)
 
 
 def api(method, path, params):
@@ -78,18 +94,25 @@ def publish(pid):
     ig_id, token = os.environ["IG_USER_ID"], os.environ["IG_ACCESS_TOKEN"]
     url = image_url(pid)
     check_image(url)
-    container = api("POST", f"{ig_id}/media", {
-        "image_url": url, "caption": CAPTIONS[pid],
-        "access_token": token})["id"]
-    for _ in range(12):
+    if is_reel(pid):
+        params = {"media_type": "REELS", "video_url": url, "share_to_feed": "true",
+                  "caption": CAPTIONS[pid], "access_token": token}
+        tries, wait = 60, 10            # videos can take a few minutes to process
+    else:
+        params = {"image_url": url, "caption": CAPTIONS[pid], "access_token": token}
+        tries, wait = 12, 5
+    container = api("POST", f"{ig_id}/media", params)["id"]
+    for _ in range(tries):
         st = api("GET", container, {"fields": "status_code",
                                     "access_token": token}).get("status_code")
         print("Container status:", st)
         if st == "FINISHED":
             break
         if st == "ERROR":
-            sys.exit("Instagram could not process the image.")
-        time.sleep(5)
+            sys.exit("Instagram could not process the media.")
+        time.sleep(wait)
+    else:
+        sys.exit("Instagram took too long to process the media; will retry next run.")
     return api("POST", f"{ig_id}/media_publish", {
         "creation_id": container, "access_token": token})["id"]
 
@@ -107,7 +130,9 @@ def main():
 
     if a.list:
         for it in SCHEDULE:
-            mark = "✓" if it["id"] in posted else " "
+            mark = "✓" if it["id"] in posted else ("·" if postable(it, now) or due_at(it) > now else "x")
+            if is_reel(it["id"]) and not local_file(it["id"]).exists():
+                mark += " (no video yet)"
             print(f"{mark} {due_at(it):%a %d %b %H:%M}  {it['id']}")
         return
 
@@ -115,9 +140,10 @@ def main():
         target = a.id
     else:
         due = [it for it in SCHEDULE
-               if it["id"] not in posted and due_at(it) <= now]
+               if it["id"] not in posted and due_at(it) <= now and postable(it, now)]
         if not due:
-            nxt = next((it for it in SCHEDULE if it["id"] not in posted), None)
+            nxt = next((it for it in SCHEDULE if it["id"] not in posted
+                    and (due_at(it) > now or postable(it, now))), None)
             print("Nothing due now." + (f" Next: {nxt['id']} at "
                   f"{due_at(nxt):%a %d %b %H:%M}" if nxt else " Series done!"))
             return

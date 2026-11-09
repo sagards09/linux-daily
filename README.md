@@ -1,6 +1,6 @@
-# Linux Daily: Instagram auto-poster
+# noob2pro.tech: Instagram auto-poster (Linux series)
 
-30 days · 150 commands · 210 image posts · fully automatic.
+30 days · 150 commands · 210 image posts + 30 voice-over Reels · fully automatic.
 
 ## Daily timetable (IST)
 
@@ -12,6 +12,7 @@
 | 13:00 | Lesson 3 |
 | 16:00 | Lesson 4 |
 | 18:00 | Lesson 5 |
+| 19:00 | Daily Reel: all 5 commands with voice-over (if the video exists) |
 | 20:00 | Quiz on today's 5 commands |
 
 Change times in `config.json` → `slots`, then run `python3 scripts/render.py`.
@@ -89,6 +90,16 @@ python3 scripts/post.py --list     # check the timetable
 That's it. From `start_date`, everything posts by itself. ✅
 
 ---
+
+## Reels (made on your Mac, because the voice uses macOS `say`)
+```
+cd ~/Documents/GitHub/linux-daily
+conda install -y -c conda-forge ffmpeg pillow numpy   # one time
+python3 scripts/reel.py --voice 1                      # one day -> reels/day01-reel.mp4
+python3 scripts/reel.py --voice --all                  # all 30 days (~15-25 min)
+```
+Then commit + push with GitHub Desktop. Voice and speed: `"voice"` and `"voice_rate"` in config.json
+(list voices with `say -v '?'`). If a Reel video is missing at 7 PM, the robot skips it and carries on.
 
 ## Maintenance
 

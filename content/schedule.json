@@ -25,6 +25,12 @@
   "time": "18:00"
  },
  {
+  "id": "day01-reel",
+  "day_offset": 0,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day01-6-quiz",
   "day_offset": 0,
   "time": "20:00"
@@ -58,6 +64,12 @@
   "id": "day02-5-rm",
   "day_offset": 1,
   "time": "18:00"
+ },
+ {
+  "id": "day02-reel",
+  "day_offset": 1,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day02-6-quiz",
@@ -95,6 +107,12 @@
   "time": "18:00"
  },
  {
+  "id": "day03-reel",
+  "day_offset": 2,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day03-6-quiz",
   "day_offset": 2,
   "time": "20:00"
@@ -128,6 +146,12 @@
   "id": "day04-5-uptime",
   "day_offset": 3,
   "time": "18:00"
+ },
+ {
+  "id": "day04-reel",
+  "day_offset": 3,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day04-6-quiz",
@@ -165,6 +189,12 @@
   "time": "18:00"
  },
  {
+  "id": "day05-reel",
+  "day_offset": 4,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day05-6-quiz",
   "day_offset": 4,
   "time": "20:00"
@@ -198,6 +228,12 @@
   "id": "day06-5-basename",
   "day_offset": 5,
   "time": "18:00"
+ },
+ {
+  "id": "day06-reel",
+  "day_offset": 5,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day06-6-quiz",
@@ -235,6 +271,12 @@
   "time": "18:00"
  },
  {
+  "id": "day07-reel",
+  "day_offset": 6,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day07-6-quiz",
   "day_offset": 6,
   "time": "20:00"
@@ -268,6 +310,12 @@
   "id": "day08-5-diff",
   "day_offset": 7,
   "time": "18:00"
+ },
+ {
+  "id": "day08-reel",
+  "day_offset": 7,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day08-6-quiz",
@@ -305,6 +353,12 @@
   "time": "18:00"
  },
  {
+  "id": "day09-reel",
+  "day_offset": 8,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day09-6-quiz",
   "day_offset": 8,
   "time": "20:00"
@@ -338,6 +392,12 @@
   "id": "day10-5-unzip",
   "day_offset": 9,
   "time": "18:00"
+ },
+ {
+  "id": "day10-reel",
+  "day_offset": 9,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day10-6-quiz",
@@ -375,6 +435,12 @@
   "time": "18:00"
  },
  {
+  "id": "day11-reel",
+  "day_offset": 10,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day11-6-quiz",
   "day_offset": 10,
   "time": "20:00"
@@ -408,6 +474,12 @@
   "id": "day12-5-who",
   "day_offset": 11,
   "time": "18:00"
+ },
+ {
+  "id": "day12-reel",
+  "day_offset": 11,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day12-6-quiz",
@@ -445,6 +517,12 @@
   "time": "18:00"
  },
  {
+  "id": "day13-reel",
+  "day_offset": 12,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day13-6-quiz",
   "day_offset": 12,
   "time": "20:00"
@@ -478,6 +556,12 @@
   "id": "day14-5-sleep",
   "day_offset": 13,
   "time": "18:00"
+ },
+ {
+  "id": "day14-reel",
+  "day_offset": 13,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day14-6-quiz",
@@ -515,6 +599,12 @@
   "time": "18:00"
  },
  {
+  "id": "day15-reel",
+  "day_offset": 14,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day15-6-quiz",
   "day_offset": 14,
   "time": "20:00"
@@ -548,6 +638,12 @@
   "id": "day16-5-source",
   "day_offset": 15,
   "time": "18:00"
+ },
+ {
+  "id": "day16-reel",
+  "day_offset": 15,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day16-6-quiz",
@@ -585,6 +681,12 @@
   "time": "18:00"
  },
  {
+  "id": "day17-reel",
+  "day_offset": 16,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day17-6-quiz",
   "day_offset": 16,
   "time": "20:00"
@@ -618,6 +720,12 @@
   "id": "day18-5-strings",
   "day_offset": 17,
   "time": "18:00"
+ },
+ {
+  "id": "day18-reel",
+  "day_offset": 17,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day18-6-quiz",
@@ -655,6 +763,12 @@
   "time": "18:00"
  },
  {
+  "id": "day19-reel",
+  "day_offset": 18,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day19-6-quiz",
   "day_offset": 18,
   "time": "20:00"
@@ -688,6 +802,12 @@
   "id": "day20-5-ssh-keygen",
   "day_offset": 19,
   "time": "18:00"
+ },
+ {
+  "id": "day20-reel",
+  "day_offset": 19,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day20-6-quiz",
@@ -725,6 +845,12 @@
   "time": "18:00"
  },
  {
+  "id": "day21-reel",
+  "day_offset": 20,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day21-6-quiz",
   "day_offset": 20,
   "time": "20:00"
@@ -758,6 +884,12 @@
   "id": "day22-5-renice",
   "day_offset": 21,
   "time": "18:00"
+ },
+ {
+  "id": "day22-reel",
+  "day_offset": 21,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day22-6-quiz",
@@ -795,6 +927,12 @@
   "time": "18:00"
  },
  {
+  "id": "day23-reel",
+  "day_offset": 22,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day23-6-quiz",
   "day_offset": 22,
   "time": "20:00"
@@ -828,6 +966,12 @@
   "id": "day24-5-logger",
   "day_offset": 23,
   "time": "18:00"
+ },
+ {
+  "id": "day24-reel",
+  "day_offset": 23,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day24-6-quiz",
@@ -865,6 +1009,12 @@
   "time": "18:00"
  },
  {
+  "id": "day25-reel",
+  "day_offset": 24,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day25-6-quiz",
   "day_offset": 24,
   "time": "20:00"
@@ -898,6 +1048,12 @@
   "id": "day26-5-traceroute",
   "day_offset": 25,
   "time": "18:00"
+ },
+ {
+  "id": "day26-reel",
+  "day_offset": 25,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day26-6-quiz",
@@ -935,6 +1091,12 @@
   "time": "18:00"
  },
  {
+  "id": "day27-reel",
+  "day_offset": 26,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day27-6-quiz",
   "day_offset": 26,
   "time": "20:00"
@@ -968,6 +1130,12 @@
   "id": "day28-5-w",
   "day_offset": 27,
   "time": "18:00"
+ },
+ {
+  "id": "day28-reel",
+  "day_offset": 27,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day28-6-quiz",
@@ -1005,6 +1173,12 @@
   "time": "18:00"
  },
  {
+  "id": "day29-reel",
+  "day_offset": 28,
+  "time": "19:00",
+  "type": "reel"
+ },
+ {
   "id": "day29-6-quiz",
   "day_offset": 28,
   "time": "20:00"
@@ -1038,6 +1212,12 @@
   "id": "day30-5-wait",
   "day_offset": 29,
   "time": "18:00"
+ },
+ {
+  "id": "day30-reel",
+  "day_offset": 29,
+  "time": "19:00",
+  "type": "reel"
  },
  {
   "id": "day30-6-quiz",

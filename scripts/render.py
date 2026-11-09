@@ -152,7 +152,7 @@ def draw_lesson(day, idx, L, theme, s):
     col = LEVELS[level(day)]
     header(d, day, f"· {idx}/5", col)
     y = M + 64
-    d.text((M, y), theme, font=F(SANS, 26), fill=MUTED)
+    d.text((M, y), f"{CFG.get('series', '')} · {theme}".strip(" ·"), font=F(SANS, 26), fill=MUTED)
     y += 56
     cf = fit(d, MONO_B, L["cmd"], INNER, 104 * s, 56)
     d.text((M, y), L["cmd"], font=cf, fill=GREEN)
@@ -183,7 +183,7 @@ def draw_quiz(day, D, s):
     y = M + 80
     d.text((M, y), "Test yourself", font=F(SANS_B, 64 * s), fill=TEXT)
     y += 82 * s
-    d.text((M, y), f"{D['theme']} · answers tomorrow", font=F(SANS, 28 * s),
+    d.text((M, y), f"{CFG.get('series', '').title()} · {D['theme']} · answers tomorrow".strip(" ·"), font=F(SANS, 26 * s),
            fill=MUTED)
     y += 64 * s
     qf, of = F(SANS_B, 31 * s), F(SANS, 28 * s)
@@ -283,6 +283,16 @@ def cap_answers(day, D):
             f"🔔 Follow {CFG['handle']} · {CFG['tagline']}\n\n{TAGS}")
 
 
+def cap_reel(day, D):
+    cmds = " · ".join(L["cmd"] for L in D["lessons"])
+    lines = "\n".join(f"{i}. {L['cmd']}: {L['what']}" for i, L in enumerate(D["lessons"], 1))
+    return (f"Day {day} in 90 seconds 🎬 {D['theme']}\n\n{lines}\n\n"
+            f"Which one did you not know? Tell me below 👇\n"
+            f"Quiz on all 5 tonight at 8 PM!\n\n"
+            f"📌 Save this · 🔔 Follow {CFG['handle']} · {CFG['tagline']}\n\n"
+            f"#reels #linuxreels {TAGS}")
+
+
 def main():
     slots = CFG["slots"]
     captions, schedule = {}, []
@@ -295,6 +305,10 @@ def main():
             captions[pid] = cap_lesson(day, i, L, D["theme"])
             schedule.append({"id": pid, "day_offset": off,
                              "time": slots["lessons"][i - 1]})
+        pid = f"day{day:02d}-reel"
+        captions[pid] = cap_reel(day, D)
+        schedule.append({"id": pid, "day_offset": off, "time": slots["reel"],
+                         "type": "reel"})
         pid = f"day{day:02d}-6-quiz"
         render(draw_quiz, OUT / f"{pid}.jpg", day, D)
         captions[pid] = cap_quiz(day, D)

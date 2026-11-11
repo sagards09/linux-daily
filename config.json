@@ -5,7 +5,7 @@
   "github_repo": "linux-daily",
   "branch": "main",
   "tagline": "Noob today. Root tomorrow.",
-  "start_date": "2026-11-10",
+  "start_date": "2026-11-11",
   "slots": {
     "answers": "08:00",
     "lessons": [
@@ -21,6 +21,6 @@
   "timezone_offset": "+05:30",
   "handle_spoken": "noob to pro dot tech",
   "series": "LINUX SERIES",
-  "voice": "Rishi",
-  "voice_rate": 165
+  "voice": "Veena (Enhanced)",
+  "voice_rate": 135
 }
